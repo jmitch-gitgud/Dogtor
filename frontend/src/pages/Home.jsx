@@ -10,16 +10,18 @@ function Home() {
       <Header />
       <div className="login-header padding-top-128">
 
-        <h1 className="padding-bottom-16">Dogtor</h1>
-        <p className="padding-bottom-32">Here for all of your vet scheduling needs</p>
+        <div className="gray-box">
+        <h1 className="padding-bottom-16">Welcome to the Dogtor Web Application</h1>
+        <p className="padding-bottom-32">Here for all of your vet scheduling needs!</p>
         <nav>
           <Link to="/login">
             <button className="login-button" type="button">
-              Sign In
+              Continue
             </button>
           </Link>
         </nav>
         
+        </div>
       </div>
       <Footer />
     </div>

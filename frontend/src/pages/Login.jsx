@@ -48,17 +48,17 @@ function Login() {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div>
-          <label className="input-label">Username: </label>
+          <label className="input-label">Username </label>
           <input type="text" name="uname" required />
         </div>
-        <div>
-          <label className="input-label">Password: </label>
+        <div className="padding-bottom-24">
+          <label className="input-label">Password </label>
           <input type="password" name="pass" required />
           {renderErrorMessage("Invalid")}
           {renderErrorMessage("Error")}
         </div>
         <div className="button-container">
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Login" />
         </div>
       </form>
     </div>
@@ -68,8 +68,7 @@ function Login() {
     <div>
       <Header />
       <div className="login-form">
-        <div className="login-header padding-top-64">
-          <h1>Sign In</h1>
+        <div className="login-header padding-top-128">
         </div>
         {isSubmitted ? <div className="login-success">User is successfully logged in [insert home page here]</div> : renderForm}
       </div>
