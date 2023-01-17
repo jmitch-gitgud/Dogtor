@@ -1,6 +1,35 @@
 const {Client} = require("pg");
 
-const dbPass = 'jordan_rocks';
+const dbPass = 'ROY25';
+
+function schedule(details, date, vet, tech, pet, cust, compla, res) {
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+  const text = 'INSERT INTO public.appointment(appointment_details, appointment_date, assigned_vets_id, assigned_technicians_id, assigned_pets_id, assigned_Client_id, chief_complaint) VALUES($1, $2, $3, $4, $5, $6, $7)'
+  const values = [details, date, vet, tech, pet, cust, compla]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "inserted"}));
+        }});
+      }
+  })
+}
 
 function login(u, p, res) {
     const client = new Client({
@@ -38,3 +67,4 @@ function login(u, p, res) {
 }
 
 module.exports = { login };
+module.exports = { schedule };
