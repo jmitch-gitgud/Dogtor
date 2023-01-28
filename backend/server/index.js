@@ -27,3 +27,14 @@ app.route('/check').post((req, res) => {
 
   backend.login(username, password, res);
 }); 
+
+app.route('/appointment').post((req, res) => {
+  appointmentD = req.body.details;
+  appointmentDate = req.body.date;
+  appointmentVet = req.body.vetId;
+  appointmentTech = req.body.techId;
+  appointmentPet= req.body.petId;
+  appointmentClient = req.body.clientId;
+  appointmentComplain = req.body.chiefComplaint;
+  backend.schedule(appointmentD, appointmentDate, appointmentVet, appointmentTech, appointmentPet, appointmentClient, appointmentComplain, res);
+});
