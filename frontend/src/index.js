@@ -11,6 +11,7 @@ import RegisterPet from "./pages/Admin/RegisterPet";
 import AdminPetProfiles from "./pages/Admin/AdminPetProfiles";
 import AdminSchedule from "./pages/Admin/AdminSchedule";
 import AdminSettings from "./pages/Admin/AdminSettings";
+import ViewUsers from "./pages/Admin/ViewUsers";
 
 export default function App() {
     return (
@@ -28,6 +29,7 @@ export default function App() {
             <Route path="admin/pet-profiles" element={<AdminPetProfiles />} />
             <Route path="admin-schedule" element={<AdminSchedule />} />
             <Route path="admin-settings" element={<AdminSettings />} />
+            <Route path="admin-view-users" element={<ViewUsers />} />
             
           </Route>
         </Routes>

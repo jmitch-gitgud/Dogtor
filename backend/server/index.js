@@ -21,6 +21,15 @@ app.use(function (req, res, next) {
 
 server.listen(listenPort, "127.0.0.1");
 
+app.route('/viewUsers').get((req,res) => {
+  backend.viewUsers(req,res);
+});
+
+app.route('/viewUsersPet').get((req,res) => {
+  userId = req.body.petsOwnerId;
+  backend.viewUserPet(userId,res);
+});
+
 app.route('/check').post((req, res) => {
   username = req.body.Username;
   password = req.body.Password;
