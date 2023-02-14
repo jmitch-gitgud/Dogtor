@@ -66,5 +66,91 @@ function login(u, p, res) {
         })
 }
 
-module.exports = { login };
-module.exports = { schedule };
+function viewUsers(req,res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+  const text = 'SELECT client_id, client_username FROM public.clients'
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "Retrieved",data: pgres.rows}));
+          console.log(pgres);
+        }});
+      }
+  })
+
+}
+
+function viewUserPet(userId,res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+  const text = 'SELECT * FROM public.pets WHERE "owner_id"=$1'
+  const values = [userId]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "retrieved", data: pgres.rows}));
+        }});
+      }
+  })
+}
+
+function viewPet(petId,res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+  const text = 'SELECT * FROM public.pets WHERE "pet_id"=$1'
+  const values = [petId]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "retrieved", data: pgres.rows}));
+        }});
+      }
+  })
+
+}
+
+module.exports = { login, schedule, viewUsers, viewUserPet,viewPet};
