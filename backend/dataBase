@@ -91,6 +91,40 @@ CREATE TABLE blocks(
 	PRIMARY KEY(block_id)
 );
 
+CREATE TABLE appointment_type(
+	appointment_type_id uuid DEFAULT uuid_generate_v4 (),
+	appointment_type_catagory VARCHAR,
+	appointment_type_value VARCHAR,
+	appointment_type_duration INT,
+	PRIMARY KEY(appointment_type_id)
+);
+
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('General Appointment','Checkups',30);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('General Appointment','Vaccines',30);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('General Appointment','Ear Infections',30);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('General Appointment','Consultations',30);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('General Appointment','Annual Appointment',30);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('Sick Appointment','Pet is under some form of distress',60);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('Technician Appointment','Technician performs task',15);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('Exotic Appointment','Exotic Animal appointment',45);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value) VALUES ('Emergency Appointment','Extreme situation where care is needed immediatly');
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('Surgeries','Ortho', 240);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('Surgeries','Dental', 180);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('Surgeries','Spay(dog)', 45);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('Surgeries','Neuter(dog)', 15);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('Surgeries','Spay(cat)', 30);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('Surgeries','Neuter(cat)', 15);
+INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('Surgeries','Exotic Surgery', 120);
+
+
+
+
+
+
+
+
+
+
 INSERT INTO admins(admin_name,admin_password) VALUES ('AndreAucoin',crypt('password', gen_salt('md5')));
 INSERT INTO clients(client_username, client_password) VALUES ('JohnDuck',crypt('password', gen_salt('md5')));
 INSERT INTO vets(vets_username, vets_password,vets_skills ) VALUES ('Donald Duck',crypt('password', gen_salt('md5')), null);

@@ -14,6 +14,7 @@ import AdminSettings from "./pages/Admin/AdminSettings";
 import ViewUsers from "./pages/Admin/ViewUsers";
 import ViewUsersPets from "./pages/Admin/ViewUsersPets";
 import ViewPet from "./pages/Admin/ViewPet";
+import SelectType from "./pages/Users/SelectType";
 
 export default function App() {
     return (
@@ -34,6 +35,8 @@ export default function App() {
             <Route path="admin-view-users" element={<ViewUsers />} />
             <Route path="admin-view-users-pets/:id" element={<ViewUsersPets />} />
             <Route path="admin-view-users-pet/:id" element={<ViewPet />} />
+            <Route path="admin-view-users-pet/:id" element={<ViewPet />} />
+            <Route path="user-select-type" element={<SelectType />} />
             
           </Route>
         </Routes>

@@ -1,6 +1,6 @@
 const {Client} = require("pg");
 
-const dbPass = '';
+const dbPass = 'ROY25';
 
 function schedule(details, date, vet, tech, pet, cust, compla, res) {
   const client = new Client({
@@ -91,7 +91,6 @@ function viewUsers(req,res){
         }});
       }
   })
-
 }
 
 function viewUserPet(userId,res){
@@ -153,4 +152,61 @@ function viewPet(petId,res){
 
 }
 
-module.exports = { login, schedule, viewUsers, viewUserPet,viewPet};
+
+function selectType(req,res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+  const text = 'SELECT DISTINCT appointment_type_catagory FROM appointment_type;'
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "Retrieved",data: pgres.rows}));
+          console.log(pgres);
+        }});
+      }
+  })
+}
+
+function selectValueFromType(appointment_type_value, res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+  const text = 'SELECT * FROM appointment_type.pets WHERE "appointment_type_value"=$1'
+  const values = [appointment_type_value]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "retrieved", data: pgres.rows}));
+        }});
+      }
+  })
+}
+
+module.exports = { login, schedule, viewUsers, viewUserPet,viewPet, selectType, selectValueFromType};
