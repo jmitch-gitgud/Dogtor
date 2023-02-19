@@ -52,3 +52,8 @@ app.route('/appointment').post((req, res) => {
   appointmentComplain = req.body.chiefComplaint;
   backend.schedule(appointmentD, appointmentDate, appointmentVet, appointmentTech, appointmentPet, appointmentClient, appointmentComplain, res);
 });
+
+/* This endpoints deals with retrieving all the types of endpoints*/
+app.route('/selectType').get((req,res) => {
+  backend.selectType(req,res);
+});
