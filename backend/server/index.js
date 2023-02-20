@@ -21,15 +21,18 @@ app.use(function (req, res, next) {
 
 server.listen(listenPort, "127.0.0.1");
 
+/*Retrieves all users of the system */
 app.route('/viewUsers').get((req,res) => {
   backend.viewUsers(req,res);
 });
 
+/*Endpoint deals with retrieving all pets of a specifc users */
 app.route('/viewUsersPet/:id').get((req,res) => {
   userId = req.params['id'];
   backend.viewUserPet(userId,res);
 });
 
+/* Endpoint deals with retieving a specific pet*/
 app.route('/viewPet/:id').get((req,res) => {
   petId = req.params['id'];
   backend.viewPet(petId,res);
@@ -53,7 +56,7 @@ app.route('/appointment').post((req, res) => {
   backend.schedule(appointmentD, appointmentDate, appointmentVet, appointmentTech, appointmentPet, appointmentClient, appointmentComplain, res);
 });
 
-/* This endpoints deals with retrieving all the types of endpoints*/
+/* This endpoints deals with retrieving all the types of appointments*/
 app.route('/selectType').get((req,res) => {
   backend.selectType(req,res);
 });

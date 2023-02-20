@@ -1,6 +1,6 @@
 const {Client} = require("pg");
 
-const dbPass = '';
+const dbPass = 'ROY25';
 
 function schedule(details, date, vet, tech, pet, cust, compla, res) {
   const client = new Client({
@@ -66,6 +66,7 @@ function login(u, p, res) {
         })
 }
 
+/* Retrieves all the users from the system */
 function viewUsers(req,res){
   const client = new Client({
     host: '127.0.0.1',
@@ -93,6 +94,7 @@ function viewUsers(req,res){
   })
 }
 
+/*Retrieves all the pets of a specifc pet */
 function viewUserPet(userId,res){
   const client = new Client({
     host: '127.0.0.1',
@@ -122,6 +124,7 @@ function viewUserPet(userId,res){
   })
 }
 
+/* Will retrieve all information on a specifc pet*/
 function viewPet(petId,res){
   const client = new Client({
     host: '127.0.0.1',
@@ -152,7 +155,7 @@ function viewPet(petId,res){
 
 }
 
-
+/*Function will retrieve all the types in the system that currently exist */
 function selectType(req,res){
   const client = new Client({
     host: '127.0.0.1',
@@ -179,6 +182,7 @@ function selectType(req,res){
       }
   })
 }
+
 
 function selectValueFromType(appointment_type_value, res){
   const client = new Client({
