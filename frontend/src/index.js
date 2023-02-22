@@ -1,9 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Welcome from "./pages/Welcome";
+import Scheduler from "./pages/Scheduler";
+
+import registerServiceWorker from './components/registerServiceWorker';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import AdminRegister from "./pages/Admin/AdminRegister";
 import RegisterUser from "./pages/Admin/RegisterUser";
@@ -21,7 +25,6 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
 
@@ -44,4 +47,5 @@ export default function App() {
     );
   }
   
-  ReactDOM.render(<App />, document.getElementById("root"));
+  ReactDOM.render(<MuiThemeProvider><App /></MuiThemeProvider>, document.getElementById("root"));
+  registerServiceWorker();

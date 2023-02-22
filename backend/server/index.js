@@ -39,8 +39,16 @@ app.route('/check').post((req, res) => {
   username = req.body.Username;
   password = req.body.Password;
 
-  backend.login(username, password, res);
-}); 
+  const text = 'SELECT * FROM "public"."User" WHERE "Username" = $1 AND "Password" = $2'
+  const values = [username, password]
+
+  const client = new Client({
+  host: '127.0.0.1',
+  user: 'postgres',
+  database: 'postgres',
+  password: 'jordan_rocks',
+  port: 5432,
+}); });
 
 app.route('/appointment').post((req, res) => {
   appointmentD = req.body.details;
