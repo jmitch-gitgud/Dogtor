@@ -38,6 +38,7 @@ app.route('/viewPet/:id').get((req,res) => {
 app.route('/check').post((req, res) => {
   username = req.body.Username;
   password = req.body.Password;
+  backend.login(username, password, res);
 
   const text = 'SELECT * FROM "public"."User" WHERE "Username" = $1 AND "Password" = $2'
   const values = [username, password]
