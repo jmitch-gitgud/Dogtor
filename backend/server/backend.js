@@ -193,7 +193,7 @@ function selectValueFromType(appointment_type_value, res){
     port: 5432,
   });
 
-  const text = 'SELECT * FROM appointment_type.pets WHERE "appointment_type_value"=$1'
+  const text = 'SELECT appointment_type_value,appointment_type_id FROM public.appointment_type WHERE "appointment_type_catagory"=$1'
   const values = [appointment_type_value]
 
   client.connect(err => {
@@ -213,4 +213,33 @@ function selectValueFromType(appointment_type_value, res){
   })
 }
 
-module.exports = { login, schedule, viewUsers, viewUserPet,viewPet, selectType, selectValueFromType};
+function selectPerformer(id_value, res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+  const text =  'SELECT public.staff.staff_id, public.staff.staff_username, public.custom_skills.appointment_type_id FROM public.staff INNER JOIN public.custom_skills ON public.staff.staff_id=public.custom_skills.staff_id WHERE custom_skills.appointment_type_id=$1'
+  const values = [id_value]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "retrieved", data: pgres.rows}));
+        }});
+      }
+  })
+}
+
+module.exports = { login, schedule, viewUsers, viewUserPet,viewPet, selectType, selectValueFromType,selectPerformer};

@@ -19,6 +19,9 @@ import ViewUsers from "./pages/Admin/ViewUsers";
 import ViewUsersPets from "./pages/Admin/ViewUsersPets";
 import ViewPet from "./pages/Admin/ViewPet";
 import SelectType from "./pages/Users/SelectType";
+import SelectValue from "./pages/Users/SelectValue";
+import SelectPerformer from "./pages/Users/SelectPerformer";
+import WithLabelExample from "./pages/Users/demo";
 
 export default function App() {
     return (
@@ -38,9 +41,9 @@ export default function App() {
             <Route path="admin-view-users" element={<ViewUsers />} />
             <Route path="admin-view-users-pets/:id" element={<ViewUsersPets />} />
             <Route path="admin-view-users-pet/:id" element={<ViewPet />} />
-            <Route path="admin-view-users-pet/:id" element={<ViewPet />} />
             <Route path="user-select-type" element={<SelectType />} />
-            
+            <Route path="user-select-type/:type" element={<SelectValue />} />
+            <Route path="user-select-type/:type/type-id/:id" element={<SelectPerformer />} />            
           </Route>
         </Routes>
       </BrowserRouter>

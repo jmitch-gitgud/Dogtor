@@ -34,52 +34,26 @@ CREATE TABLE pets(
 	FOREIGN KEY (owner_id) REFERENCES "clients" (client_id)
 );
 
-CREATE TABLE vets(
-	vets_id uuid DEFAULT uuid_generate_v4 (),
-	vets_username VARCHAR NOT NULL,
-	vets_password VARCHAR NOT NULL,
-	vets_skills text[],
-	vets_speciality VARCHAR,
-	vets_start_time time,
-	vets_end_time time,
-	PRIMARY KEY(vets_id)
+create table staff(
+	staff_id uuid DEFAULT uuid_generate_v4 (),
+	staff_username VARCHAR NOT NULL,
+	staff_password VARCHAR NOT NULL,
+	staff_start_time time,
+	staff_end_time time,
+	catagory INT,
+	PRIMARY KEY(staff_id)
 );
-
-CREATE TABLE technicians(
-	technicians_id uuid DEFAULT uuid_generate_v4 (),
-	technicians_username VARCHAR NOT NULL,
-	technicians_password VARCHAR NOT NULL,
-	technicians_skills text[],
-	vets_speciality VARCHAR,
-	technicians_start_time time,
-	technicians_end_time time,
-	PRIMARY KEY(technicians_id)
-);
-
-CREATE TABLE veterinary_assistant(
-	veterinary_assistant_id uuid DEFAULT uuid_generate_v4 (),
-	veterinary_assistant_username VARCHAR NOT NULL,
-	veterinary_assistant_password VARCHAR NOT NULL,
-	veterinary_assistant_skills text[],
-	veterinary_assistant_start_time time,
-	veterinary_assistant_end_time time,
-	PRIMARY KEY(technicians_id)
-);
-
 
 CREATE TABLE appointment(
 	appointment_id uuid DEFAULT uuid_generate_v4 (),
 	appointment_date DATE,
 	appointment_details VARCHAR(500),
-	assigned_vets_id uuid,
-	assigned_technicians_id uuid,
 	assigned_pets_id uuid,
 	assigned_Client_id uuid,
 	chief_complaint VARCHAR,
 	FOREIGN KEY (assigned_Client_id) REFERENCES "clients" (client_id),
 	FOREIGN KEY (assigned_pets_id) REFERENCES "pets" (pet_id),
-	FOREIGN KEY (assigned_technicians_id) REFERENCES "technicians" (technicians_id),
-	FOREIGN KEY (assigned_vets_id) REFERENCES "vets" (vets_id),
+	FOREIGN KEY (staff_id) REFERENCES "staff" (staff_id),
 	PRIMARY KEY(appointment_id)
 );
 
@@ -97,6 +71,15 @@ CREATE TABLE appointment_type(
 	appointment_type_value VARCHAR,
 	appointment_type_duration INT,
 	PRIMARY KEY(appointment_type_id)
+);
+
+CREATE TABLE custom_skills(
+	custom_skills_id uuid DEFAULT uuid_generate_v4 (),
+	staff_id uuid,
+	appointment_type_id uuid,
+	PRIMARY KEY (custom_skills_id),
+	FOREIGN KEY (staff_id) REFERENCES "staff" (staff_id),
+	FOREIGN KEY (appointment_type_id) REFERENCES "appointment_type" (appointment_type_id)
 );
 
 INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,appointment_type_duration) VALUES ('General Appointment','Checkups',30);
@@ -118,14 +101,6 @@ INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,ap
 
 
 
-
-
-
-
-
-
-
 INSERT INTO admins(admin_name,admin_password) VALUES ('AndreAucoin',crypt('password', gen_salt('md5')));
 INSERT INTO clients(client_username, client_password) VALUES ('JohnDuck',crypt('password', gen_salt('md5')));
-INSERT INTO vets(vets_username, vets_password,vets_skills ) VALUES ('Donald Duck',crypt('password', gen_salt('md5')), null);
-INSERT INTO technicians(technicians_username, technicians_password,technicians_skills ) VALUES ('Scrooge Mc Duck',crypt('password', gen_salt('md5')), null);
+INSERT INTO staff(staff_username, staff_password,catagory) VALUES ('Donald Duck',crypt('password', gen_salt('md5')),1);

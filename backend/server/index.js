@@ -60,3 +60,13 @@ app.route('/appointment').post((req, res) => {
 app.route('/selectType').get((req,res) => {
   backend.selectType(req,res);
 });
+
+app.route('/viewType/:type').get((req,res) => {
+  appointment_type_value = req.params['type'];
+  backend.selectValueFromType(appointment_type_value,res);
+});
+
+app.route('/findPerfomer/:id').get((req,res) =>{
+  performer_id = req.params['id']
+  backend.selectPerformer(performer_id,res);
+});
