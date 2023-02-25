@@ -21,7 +21,6 @@ import ViewPet from "./pages/Admin/ViewPet";
 import SelectType from "./pages/Users/SelectType";
 import SelectValue from "./pages/Users/SelectValue";
 import SelectPerformer from "./pages/Users/SelectPerformer";
-import WithLabelExample from "./pages/Users/demo";
 
 export default function App() {
     return (
