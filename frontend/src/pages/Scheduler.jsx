@@ -6,17 +6,96 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import 'antd/dist/antd.min.js';
 //import "./App.css";
-import { Spin, Tag, Divider, Button } from "antd";
+import { Spin, Tag, Divider, Button, Form, Input, Select} from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { default as AddNewSchedule } from "../components/AddNewSchedule";
 import { default as EditSchedule } from "../components/EditSchedule";
 import Header from "../components/Header";
 //import Footer from "../components/Footer";
 import {DatePicker} from "antd";
+const { Option } = Select;
+
+
+const onFinish = (values) => {
+
+  var doctor = values.resourceId;
+  var tempDate = JSON.stringify(values.dates[0].$d);
+  var startTime = tempDate.slice(12, 17);
+  var hour = parseInt(startTime.slice(0, 2)) - 4;
+  var time = JSON.stringify(hour);
+  var success = 1;
+
+  if(time.length < 2) {
+
+    time = "0" + time;
+
+  }
+
+  var totalStartTime = time + tempDate.slice(14, 17);
+
+
+  var newDate = tempDate.slice(1, 11);
+  console.log("Success:", values);
+  //Can directly call props here
+
+  fetch("./data-EmployeeSchedule.json")
+      .then((response) => response.json())
+      .then((result) => {
+        
+        result.forEach((element) => {
+          //for(let name of group.names)
+
+          var scheduledDate = element.start.slice(0, 10);
+          var scheduledStartTime = element.start.slice(11,13);
+          var scheduledEndTime = element.end.slice(11,13);
+          var scheduledDoctor = element.resourceId;
+          //console.log(scheduledDate);
+
+          if(doctor === scheduledDoctor)  {
+
+            if(scheduledDate === newDate)  {
+
+              console.log(scheduledDate);
+              console.log(scheduledStartTime);
+
+              if((totalStartTime < scheduledStartTime) || (totalStartTime > scheduledEndTime))  {
+
+                  window.confirm("Appointment successfully booked!")
+                  success = 0;
+
+              }
+
+              else  {
+
+                window.confirm("Appointment is colliding with another appointment. Please try again.")
+                success = 0;
+
+              }
+
+            }
+
+          }
+
+        })
+
+        if(success === 1) {
+
+          window.confirm("Appointment successfully booked!")
+  
+        }
+
+      })
+};
+
+const onFinishFailed = (errorInfo) => {
+  console.log("Failed:", errorInfo);
+};
+
 
 const localizer = momentLocalizer(moment);
 const { CheckableTag } = Tag;
 const { RangePicker } = DatePicker;
+
 
 const employeeTagsData = ["Dr. David", "Dr. Erin", "Tech Jerry"];
 const clientData = {
@@ -25,11 +104,15 @@ const clientData = {
   "Tech Jerry": ["JC"]
 };
 
+
+
 class Scheduler extends Component {
   constructor() {
     super();
+    
     this.state = {
       schedule: [],
+      tempSchedule: [],
       loading: true,
       selectedTags: employeeTagsData,
       resourceMap: [
@@ -149,6 +232,27 @@ class Scheduler extends Component {
     });
   };
 
+/*handleSubmit = (event) => {
+
+    var { startTime, endTime } = document.forms[0];
+
+    let data = {start: startTime.value, end: endTime.value};
+    fetch("./data-EmployeeSchedule.json")
+    .then((response) => response.json())
+      .then((result) => {
+        result.forEach((element) => {
+          element.start = moment(element.start).toDate();
+          element.end = moment(element.end).toDate();
+
+
+        });
+        this.setState({ schedule: result, loading: false });
+      });
+  }*/
+
+
+
+
   componentDidMount() {
     fetch("./data-EmployeeSchedule.json")
       .then((response) => response.json())
@@ -161,7 +265,13 @@ class Scheduler extends Component {
       });
   }
 
+  
   render() {
+
+   
+
+    
+
     const { selectedTags, resourceMap } = this.state;
 
     return (
@@ -220,7 +330,7 @@ class Scheduler extends Component {
             </span>
             </p> */}
         </div>
-
+            
         <Divider />
         
 
@@ -228,30 +338,52 @@ class Scheduler extends Component {
         <Spin spinning={this.state.loading} tip="Loading...">
         <div className="flex-container" >
          <div className="schedulerform" style={{ marginTop: "30px", width: "50%", marginRight: "5%"}} display= "flex">
+         <Form onFinish={onFinish} onFinishFailed={onFinishFailed} name="basic" initialValues={{remember: true}} style={{background: "#D9D9D9"}}>
+
             <h1 className="padding-bottom-16" style={{textAlign: "center", marginBottom: "30px"}}>Add New Appointment</h1>
             <div>
-            <div style={{textAlign: "center", marginBottom: "30px"}}>
-              <label className="input-label">Last Name </label>
-              <input type="text" name="uname" required />
-            </div>
-            <div style={{textAlign: "center", marginBottom: "30px"}}>
-              <label className="input-label">First Name </label>
-              <input type="text" name="uname" required />
-            </div>
-            <div style={{textAlign: "center", marginBottom: "30px"}}>
-              <label className="input-label">Doctor </label>
-              <input type="text" name="uname" required />
-            </div>
-            <div style={{textAlign: "center", marginBottom: "30px"}}>
-              <label className="input-label">Date </label>
-              <div style={{marginBottom: "20px"}}></div>
-              <RangePicker showTime={{ format: "HH:mm" }} format="YYYY-MM-DD HH:mm" />
-            </div>
-            <div className="button-container">
-              <input type="submit" value="Add" />
-            </div>
+            <Form.Item
+             labelCol={{ span: 24 }}
+             name="lastName"
+             label="Last Name"
+             rules={[{ required: true, message: "This information is required." }]}>
+            <Input />
+            </Form.Item>
+            <Form.Item
+            labelCol={{ span: 24 }}
+            name="firstName"
+            label="First Name"
+            rules={[{ required: true, message: "This information is required." }]}
+            >
+            <Input />
+            </Form.Item>
+            <Form.Item
+            labelCol={{ span: 24 }}
+            name="resourceId"
+            label="Doctor"
+            rules={[{ required: true, message: "This information is required." }]}>
+            <Select>
+            {employeeTagsData.map((employee) => (
+              <Option key={employee}>{employee}</Option>
+            ))}
+            </Select>
+            </Form.Item>
+            <Form.Item
+            labelCol={{ span: 24 }}
+            name="dates"
+            label="Time"
+            rules={[{ required: true, message: "This information is required." }]}
+            >
+            <RangePicker showTime={{ format: "HH:mm" }} format="YYYY-MM-DD HH:mm" type="date" name="time"/>
+            </Form.Item>
+            <Form.Item style={{textAlign: "center"}}>
+            <Button type="primary" htmlType="submit">
+             Submit
+            </Button>
+            </Form.Item>
             
             </div>
+            </Form>
           </div>
           <Calendar 
             selectable
