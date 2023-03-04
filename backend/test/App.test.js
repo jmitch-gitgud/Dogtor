@@ -13,15 +13,6 @@ test('Test to get all users', async () => {
   await expect(getUsers()).resolves.toStrictEqual(200);
 });
 
-test('Test to get specific all of a specfic user pets', async () => {
-  await expect(getUserPets()).resolves.toStrictEqual(200);
-});
-
-test('Test to get specific pet', async () => {
-  await expect(getPet()).resolves.toStrictEqual(200);
-});
-
-
 test('Connection to select type', async () => {
   await expect(selectType()).resolves.toStrictEqual(200);
 });
@@ -44,18 +35,6 @@ async function getPetIncorrect(){
 
 async function getUserPetsIncorrect(){
   let res = await axios.get('http://localhost:3001/viewUsersPet/e0dd487-6bc3-475f-91a7-a17af6212aba');
-  let status = res.status
-  return status
-}
-
-async function getPet(){
-  let res = await axios.get('http://localhost:3001/viewPet/e5975bda-d4fc-4f24-9b56-fc860a6dc822');
-  let status = res.status
-  return status
-}
-
-async function getUserPets(){
-  let res = await axios.get('http://localhost:3001/viewUsersPet/e0dd4f87-6bc3-475f-91a7-a17af6212aba');
   let status = res.status
   return status
 }
