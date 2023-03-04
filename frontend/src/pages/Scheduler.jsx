@@ -5,7 +5,6 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import 'antd/dist/antd.min.js';
-//import "./App.css";
 import { Spin, Tag, Divider, Button, Form, Input, Select} from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { default as AddNewSchedule } from "../components/AddNewSchedule";
@@ -232,26 +231,6 @@ class Scheduler extends Component {
     });
   };
 
-/*handleSubmit = (event) => {
-
-    var { startTime, endTime } = document.forms[0];
-
-    let data = {start: startTime.value, end: endTime.value};
-    fetch("./data-EmployeeSchedule.json")
-    .then((response) => response.json())
-      .then((result) => {
-        result.forEach((element) => {
-          element.start = moment(element.start).toDate();
-          element.end = moment(element.end).toDate();
-
-
-        });
-        this.setState({ schedule: result, loading: false });
-      });
-  }*/
-
-
-
 
   componentDidMount() {
     fetch("./data-EmployeeSchedule.json")
@@ -300,35 +279,6 @@ class Scheduler extends Component {
             </span>
           </p>
 
-         {/* <p>
-            <span style={{ marginRight: 8 }}>Clients:</span>
-            <span
-              className={
-                "client " +
-                (selectedTags.includes("Dr. David") ? "" : "display")
-              }
-            >
-              <Tag color="#F480A8">1720 - DS</Tag>
-            </span>
-            <span
-              className={
-                "client " +
-                (selectedTags.includes("Employee #1755") ? "" : "display")
-              }
-            >
-              <Tag color="#fda256">1755 - SL</Tag>
-              <Tag color="#8281fd">1755 - RM</Tag>
-            </span>
-            <span
-              className={
-                "client " +
-                (selectedTags.includes("Employee #1775") ? "" : "display")
-              }
-            >
-              <Tag color="#fd3153">1775 - DS</Tag>
-              <Tag color="#1ccb9e">1775 - SC</Tag>
-            </span>
-            </p> */}
         </div>
             
         <Divider />
