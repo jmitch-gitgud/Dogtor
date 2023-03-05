@@ -4,11 +4,17 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.2.1",
+    "bootstrap": "^5.2.3",
+    "material-ui": "^0.20.2",
+    "moment": "2.29.1",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.7.0",
+    "react-big-calendar": "^1.6.4",
+    "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
@@ -30,6 +36,7 @@
     "production": [
       ">0.2%",
       "not dead",
+      "not ie <= 11",
       "not op_mini all"
     ],
     "development": [
