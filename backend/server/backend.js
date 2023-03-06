@@ -242,4 +242,34 @@ function selectPerformer(id_value, res){
   })
 }
 
-module.exports = { login, schedule, viewUsers, viewUserPet,viewPet, selectType, selectValueFromType,selectPerformer};
+function findStaffTimes(id_value,res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+  const text =  'SELECT * FROM appointment where "staff_id" = $1'
+  const values = [id_value]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "retrieved", data: pgres.rows}));
+        }});
+      }
+  })
+
+}
+
+module.exports = { login, schedule, viewUsers, viewUserPet,viewPet, selectType, selectValueFromType,selectPerformer,findStaffTimes};

@@ -43,13 +43,24 @@ function SelectPerformer(){
             setData(json);
           }
         })();
-    }, []);
+    }, [id]);
 
     const handleSubmit = (event) => {
+
+        let resultId;
         if(resultType==="Select a type ..."){
             alert('Please Select type of appointment')
         }
-        console.log(resultType)
+        else{
+          results.forEach((element) => {
+            var e1=element.staff_username;
+            var e2=resultType;
+            if(e1===e2){
+              resultId=element.staff_id;
+            }
+          });
+          navigate(`/user-schedule/${id}/staff/${resultId}`);
+        }
     }
 
     console.log(results)
@@ -60,7 +71,7 @@ function SelectPerformer(){
         <div>
         <Header />
         <br></br>
-        <h>Book Appointment: Select type of appointment</h>
+        <p>Book Appointment: Select type of appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
         </div>

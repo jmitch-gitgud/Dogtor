@@ -21,6 +21,7 @@ import ViewPet from "./pages/Admin/ViewPet";
 import SelectType from "./pages/Users/SelectType";
 import SelectValue from "./pages/Users/SelectValue";
 import SelectPerformer from "./pages/Users/SelectPerformer";
+import Reformat from "./pages/Users/Reformat";
 
 export default function App() {
     return (
@@ -42,7 +43,11 @@ export default function App() {
             <Route path="admin-view-users-pet/:id" element={<ViewPet />} />
             <Route path="user-select-type" element={<SelectType />} />
             <Route path="user-select-type/:type" element={<SelectValue />} />
-            <Route path="user-select-type/:type/type-id/:id" element={<SelectPerformer />} />            
+            <Route path="user-select-type/:type/type-id/:id" element={<SelectPerformer />} />
+            <Route path="user-schedule/:id/staff/:staffId" element={<Reformat />} />
+            <Route path="demo" element={<Scheduler />} />
+            <Route path="demo/:staffId" element={<Reformat />} />
+                        
           </Route>
         </Routes>
       </BrowserRouter>

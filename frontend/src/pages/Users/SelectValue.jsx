@@ -60,7 +60,7 @@ function SelectValue(){
         <div>
         <Header />
         <br></br>
-        <h>Book Appointment: Select classsification of appointment</h>
+        <p>Book Appointment: Select classsification of appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
         </div>

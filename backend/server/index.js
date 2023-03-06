@@ -70,3 +70,8 @@ app.route('/findPerfomer/:id').get((req,res) =>{
   performer_id = req.params['id']
   backend.selectPerformer(performer_id,res);
 });
+
+app.route('/findTimesForStaff/:id').get((req,res) =>{
+  staff_id = req.params['id']
+  backend.findStaffTimes(staff_id,res);
+});

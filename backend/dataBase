@@ -44,33 +44,31 @@ create table staff(
 	PRIMARY KEY(staff_id)
 );
 
-CREATE TABLE appointment(
-	appointment_id uuid DEFAULT uuid_generate_v4 (),
-	appointment_date DATE,
-	appointment_details VARCHAR(500),
-	assigned_pets_id uuid,
-	assigned_Client_id uuid,
-	chief_complaint VARCHAR,
-	FOREIGN KEY (assigned_Client_id) REFERENCES "clients" (client_id),
-	FOREIGN KEY (assigned_pets_id) REFERENCES "pets" (pet_id),
-	FOREIGN KEY (staff_id) REFERENCES "staff" (staff_id),
-	PRIMARY KEY(appointment_id)
-);
-
-CREATE TABLE blocks(
-	block_id uuid DEFAULT uuid_generate_v4 (),		
-	blockInt int,
-	assigned_appointment_id uuid,
-	FOREIGN KEY (assigned_appointment_id) REFERENCES "appointment" (appointment_id),
-	PRIMARY KEY(block_id)
-);
-
 CREATE TABLE appointment_type(
 	appointment_type_id uuid DEFAULT uuid_generate_v4 (),
 	appointment_type_catagory VARCHAR,
 	appointment_type_value VARCHAR,
 	appointment_type_duration INT,
 	PRIMARY KEY(appointment_type_id)
+);
+
+CREATE TABLE appointment(
+	appointment_id uuid DEFAULT uuid_generate_v4 (),
+	start_appointment_date VARCHAR,
+	end_appointment_date VARCHAR,
+	assigned_pets_id uuid,
+	assigned_Client_id uuid,
+	client_name VARCHAR,
+	resource_id VARCHAR,
+	appointment_type_id uuid,
+	staff_id uuid,
+	sleepShift bool,
+	notes VARCHAR(500),
+	FOREIGN KEY (assigned_Client_id) REFERENCES "clients" (client_id),
+	FOREIGN KEY (assigned_pets_id) REFERENCES "pets" (pet_id),
+	FOREIGN KEY (staff_id) REFERENCES "staff" (staff_id),
+	FOREIGN KEY (appointment_type_id) REFERENCES "appointment_type" (appointment_type_id),
+	PRIMARY KEY(appointment_id)
 );
 
 CREATE TABLE custom_skills(
