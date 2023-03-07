@@ -7,17 +7,19 @@ import { Link } from "react-router-dom";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useParams } from "react-router-dom";
 
 
 let start=[];
 
 /* The following function deals with the first step in booking appointments*/
-function SelectUser(){
+function AdminSelectType(){
 
+    const { pet,user } = useParams();
     const [results, setData] = useState([]);
-    let [resultType, setType] = useState("Select a user ...");
+    let [resultType, setType] = useState("Select a type ...");
     const navigate = useNavigate();
-    const now = 25;
+    const now = 75;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -26,7 +28,7 @@ function SelectUser(){
 
     useEffect(() => {
         (async () => {
-          const response = await fetch('/viewUsers', {
+          const response = await fetch('/selectType', {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json'
@@ -47,9 +49,9 @@ function SelectUser(){
             alert('Please Select type of appointment')
         }
         else{
-            console.log(resultType)
-            navigate(`/admin-schedule/${resultType}`);
+            navigate(`/admin-schedule/${user}/pet/${pet}/type/${resultType}`);
         }
+        console.log(resultType)
     }
 
 
@@ -58,16 +60,16 @@ function SelectUser(){
         <div>
         <Header />
         <br></br>
-        <p>Book Appointment: Select user for appointment</p>
+        <p>Book Appointment: Select classsification of appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
         </div>
           <div className="centered">
           <select onChange={handleChangingOfType}>
-            <option value="Select a user ..."> -- Select a user -- </option>
+            <option value="Select a type ..."> -- Select a type -- </option>
             {}
             {results.map((resultType,key) => (
-              <option key={key} value={resultType.client_id}>{resultType.client_username}</option>
+              <option key={key} value={resultType.appointment_type_catagory}>{resultType.appointment_type_catagory}</option>
             ))}
           </select>
           <br />
@@ -80,4 +82,4 @@ function SelectUser(){
       );
 }
 
-export default SelectUser;
+export default AdminSelectType;

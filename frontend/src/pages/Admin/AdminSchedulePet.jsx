@@ -7,17 +7,19 @@ import { Link } from "react-router-dom";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useParams } from "react-router-dom";
 
 
 let start=[];
 
 /* The following function deals with the first step in booking appointments*/
-function SelectUser(){
+function SelectPet(){
 
+    const { user } = useParams();
     const [results, setData] = useState([]);
-    let [resultType, setType] = useState("Select a user ...");
+    let [resultType, setType] = useState("Select a pet ...");
     const navigate = useNavigate();
-    const now = 25;
+    const now = 50;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -26,7 +28,7 @@ function SelectUser(){
 
     useEffect(() => {
         (async () => {
-          const response = await fetch('/viewUsers', {
+          const response = await fetch('/viewUsersPet/'+user, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json'
@@ -40,15 +42,15 @@ function SelectUser(){
             setData(json);
           }
         })();
-    }, []);
+    }, [user]);
 
     const handleSubmit = (event) => {
-        if(resultType==="Select a type ..."){
-            alert('Please Select type of appointment')
+        if(resultType==="Select a pet ..."){
+            alert('Please Select pet')
         }
         else{
             console.log(resultType)
-            navigate(`/admin-schedule/${resultType}`);
+            navigate(`/admin-schedule/${user}/pet/${resultType}`);
         }
     }
 
@@ -58,16 +60,16 @@ function SelectUser(){
         <div>
         <Header />
         <br></br>
-        <p>Book Appointment: Select user for appointment</p>
+        <p>Book Appointment: Select pet for appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
         </div>
           <div className="centered">
           <select onChange={handleChangingOfType}>
-            <option value="Select a user ..."> -- Select a user -- </option>
+            <option value="Select a pet ..."> -- Select a pet -- </option>
             {}
             {results.map((resultType,key) => (
-              <option key={key} value={resultType.client_id}>{resultType.client_username}</option>
+              <option key={key} value={resultType.pet_id}>{resultType.pet_name}</option>
             ))}
           </select>
           <br />
@@ -80,4 +82,4 @@ function SelectUser(){
       );
 }
 
-export default SelectUser;
+export default SelectPet;

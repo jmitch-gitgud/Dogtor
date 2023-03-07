@@ -2,8 +2,8 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import React from "react";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import './userSelect.css';
-import { Link } from "react-router-dom";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,12 +12,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 let start=[];
 
 /* The following function deals with the first step in booking appointments*/
-function SelectUser(){
+function AdminSelectValue(){
 
+    const { pet,user,type } = useParams();
     const [results, setData] = useState([]);
-    let [resultType, setType] = useState("Select a user ...");
+    let [resultType, setType] = useState("Select a value ...");
     const navigate = useNavigate();
-    const now = 25;
+    const now = 80;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -26,7 +27,7 @@ function SelectUser(){
 
     useEffect(() => {
         (async () => {
-          const response = await fetch('/viewUsers', {
+          const response = await fetch('/viewType/'+type, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json'
@@ -40,17 +41,18 @@ function SelectUser(){
             setData(json);
           }
         })();
-    }, []);
+    }, [type]);
 
     const handleSubmit = (event) => {
-        if(resultType==="Select a type ..."){
-            alert('Please Select type of appointment')
+        if(resultType==="Select a value ..."){
+            alert('Please Select value of appointment')
         }
         else{
-            console.log(resultType)
-            navigate(`/admin-schedule/${resultType}`);
+            navigate(`/admin-schedule/${user}/pet/${pet}/type/${type}/value/${resultType}`);
         }
     }
+  
+    console.log(results)
 
 
     
@@ -58,16 +60,16 @@ function SelectUser(){
         <div>
         <Header />
         <br></br>
-        <p>Book Appointment: Select user for appointment</p>
+        <p>Book Appointment: Select classsification of appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
         </div>
           <div className="centered">
           <select onChange={handleChangingOfType}>
-            <option value="Select a user ..."> -- Select a user -- </option>
+            <option value="Select a type ..."> -- Select a value -- </option>
             {}
             {results.map((resultType,key) => (
-              <option key={key} value={resultType.client_id}>{resultType.client_username}</option>
+              <option key={key} value={resultType.appointment_type_id}>{resultType.appointment_type_value}</option>
             ))}
           </select>
           <br />
@@ -80,4 +82,4 @@ function SelectUser(){
       );
 }
 
-export default SelectUser;
+export default AdminSelectValue;

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import './userSelect.css';
 import { Link } from "react-router-dom";
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,12 +13,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 let start=[];
 
 /* The following function deals with the first step in booking appointments*/
-function SelectUser(){
+function AdminSelectPerformer(){
 
+    const {pet,type,user,value} = useParams();
     const [results, setData] = useState([]);
-    let [resultType, setType] = useState("Select a user ...");
+    let [resultType, setType] = useState("Select a type ...");
     const navigate = useNavigate();
-    const now = 25;
+    const now = 75;
+
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -26,7 +29,7 @@ function SelectUser(){
 
     useEffect(() => {
         (async () => {
-          const response = await fetch('/viewUsers', {
+          const response = await fetch('/findPerfomer/'+value, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json'
@@ -40,17 +43,27 @@ function SelectUser(){
             setData(json);
           }
         })();
-    }, []);
+    }, [value]);
 
     const handleSubmit = (event) => {
+
+        let resultId;
         if(resultType==="Select a type ..."){
             alert('Please Select type of appointment')
         }
         else{
-            console.log(resultType)
-            navigate(`/admin-schedule/${resultType}`);
+          results.forEach((element) => {
+            var e1=element.staff_username;
+            var e2=resultType;
+            if(e1===e2){
+              resultId=element.staff_id;
+            }
+          });
+          navigate(`/admin-schedule/${user}/pet/${pet}/type/${type}/value/${value}/staff/${resultType}`);
         }
     }
+
+    console.log(results)
 
 
     
@@ -58,16 +71,16 @@ function SelectUser(){
         <div>
         <Header />
         <br></br>
-        <p>Book Appointment: Select user for appointment</p>
+        <p>Book Appointment: Select type of appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
         </div>
           <div className="centered">
           <select onChange={handleChangingOfType}>
-            <option value="Select a user ..."> -- Select a user -- </option>
+            <option value="Select a type ..."> -- Select a type -- </option>
             {}
             {results.map((resultType,key) => (
-              <option key={key} value={resultType.client_id}>{resultType.client_username}</option>
+              <option key={key} value={resultType.staff_id}>{resultType.staff_username}</option>
             ))}
           </select>
           <br />
@@ -80,4 +93,4 @@ function SelectUser(){
       );
 }
 
-export default SelectUser;
+export default AdminSelectPerformer;
