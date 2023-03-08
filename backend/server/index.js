@@ -75,3 +75,8 @@ app.route('/findTimesForStaff/:id').get((req,res) =>{
   staff_id = req.params['id']
   backend.findStaffTimes(staff_id,res);
 });
+
+app.route('/findUserTimes/:userId').get((req,res) =>{
+  user_id = req.params['userId']
+  backend.findUserTimes(user_id,res);
+});
