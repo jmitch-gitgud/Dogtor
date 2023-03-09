@@ -29,6 +29,8 @@ import AdminSelectValue from "./pages/Admin/AdminScheduleValue"
 import AdminSelectPerformer from "./pages/Admin/AdminSchedulePerformer"
 import AdminReformat from "./pages/Admin/AdminScheduleBooking"
 import ViewUserSchedule from "./pages/Admin/ViewSchedule"
+import UserHome from "./pages/Users/UserHomePage"
+import AdminHome from "./pages/Admin/AdminHomePage"
 
 export default function App() {
     return (
@@ -59,6 +61,8 @@ export default function App() {
             <Route path="admin-schedule/:user/pet/:pet/type/:type" element={<AdminSelectValue />} />
             <Route path="admin-schedule/:user/pet/:pet/type/:type/value/:value" element={<AdminSelectPerformer />} />
             <Route path="admin-schedule/:user/pet/:pet/type/:type/value/:value/staff/:staffid" element={<AdminReformat />} />
+            <Route path="user" element={<UserHome />} />
+            <Route path="admin" element={<AdminHome />} />
             <Route path="demo" element={<Scheduler />} />
             <Route path="demo/:staffId" element={<Reformat />} />
                         

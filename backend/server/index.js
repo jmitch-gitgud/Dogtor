@@ -80,3 +80,25 @@ app.route('/findUserTimes/:userId').get((req,res) =>{
   user_id = req.params['userId']
   backend.findUserTimes(user_id,res);
 });
+
+app.route('/findTimesMax/:typId').get((req,res) =>{
+  type_id = req.params['typId']
+  backend.findTimes(type_id,res);
+});
+
+app.route('/adminBook').post((req,res) =>{
+  start_appointment_date = req.body.start_appointment_date;
+  end_appointment_date = req.body.end_appointment_date;
+  appointment_type_id = req.body.appointment_type_id;
+  assigned_client_id = req.body.assigned_client_id;
+  assigned_pets_id = req.body.assigned_pets_id;
+  staff_id = req.body.staff_id;
+  resource_id = req.body.resource_id;
+  notes = req.body.notes;
+  backend.adminBook(start_appointment_date,end_appointment_date,appointment_type_id,assigned_client_id,assigned_pets_id,staff_id,resource_id,notes,res);
+});
+
+app.route('/delete/:removeId').delete((req,res) =>{
+  type_id = req.params['removeId']
+  backend.deleteTime(type_id,res);
+});

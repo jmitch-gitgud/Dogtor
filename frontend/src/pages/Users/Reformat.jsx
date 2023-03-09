@@ -34,6 +34,7 @@ function Reformat(){
     const { RangePicker } = DatePicker;
 
     const employeeTagsData = ["Booking"];
+    let durTime=0;
 
    
 
@@ -91,6 +92,32 @@ function Reformat(){
       })();
   }, [clientId]);
 
+  const [duration, setduration] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const start=[];
+      const response = await fetch('/findTimesMax/'+id , {
+        method: 'GET',
+        headers: {
+        'Content-Type': 'application/json'
+        }     
+      })
+      const json = (await response.json()).data;
+      if(json === undefined){
+        setduration(start);
+      }
+      else{
+        setduration(json);
+      }
+    })();
+}, [id]);
+
+if(duration[0]!== undefined){
+  durTime=duration[0].appointment_type_duration;
+}
+
+
     const eventPropGetter = (event) => {
       let newStyle = {
         color: "black",
@@ -115,73 +142,92 @@ function Reformat(){
       let startDate2=dt2.format('DD');
       let starthour2=dt2.format('HH:mm');
 
-      var result = 1;
+      let result = 1;
 
-      if(startDate1 !== startDate2){
-        console.log("Cannot Schedule on different days");
+      let maxTime=0;
+
+      if(duration[0]!== undefined){
+        maxTime = duration[0].appointment_type_duration;
+      }
+
+      let checkStartTimes = moment(values.dates[0].$d);
+      let checkEndTimes =  moment(values.dates[1].$d);
+      checkStartTimes = checkStartTimes.format('DD-MM-YYYY HH:mm');
+      checkEndTimes = checkEndTimes.format('DD-MM-YYYY HH:mm');
+      var dif= Math.abs(new Date(checkEndTimes) - new Date(checkStartTimes));
+      var minutes = Math.floor((dif/1000)/60);
+      console.log(minutes); 
+      
+      if(minutes>maxTime){
+        window.confirm("Cannot Schedule a appointment longer then max");
       }
 
       else{
-        schedule.forEach((element) => {
-          var dateElement=moment(element.end_appointment_date);
-          dateElement=dateElement.format('DD')
-          var startTimeElement1=moment(element.start_appointment_date);
-          startTimeElement1 = startTimeElement1.format('HH:mm');
-          var endTimeElement2=moment(element.end_appointment_date);
-          endTimeElement2=endTimeElement2.format('HH:mm');
 
-          if(dateElement===startDate1 && dateElement===startDate2){
-            if((starthour1 > startTimeElement1 && starthour2 < endTimeElement2) 
-              || (starthour1 > startTimeElement1 && starthour1 < endTimeElement2)
-              || (starthour2 > startTimeElement1  && starthour2 < endTimeElement2)){
-              result=0;
-            }
-          }
-        })
-
-        let petId;
-        petResults.forEach((element) =>{
-          var e1=element.pet_name;
-          if(e1===resultType){
-            petId=element.pet_id;
-          }
-        });
-
-        if(result===1 && results != null){
-          window.confirm("Appointment successfully booked!");
-          startTimes = moment(values.dates[0].$d);
-          endTimes =  moment(values.dates[1].$d);
-
-          let data = {start_appointment_date: startTimes.format('DD-MM-YYYY HH:mm'), 
-                      end_appointment_date: endTimes.format('DD-MM-YYYY HH:mm'),
-                      appointment_type_id: id,
-                      assigned_Client_id: staffId,
-                      assigned_pets_id: petId};
-          console.log(data)
+        if(startDate1 !== startDate2){
+          window.confirm("annot Schedule on different days");
         }
-
+  
         else{
-          window.confirm("Appointment is colliding with another appointment. Please try again.")
+          schedule.forEach((element) => {
+            var dateElement=moment(element.end_appointment_date);
+            dateElement=dateElement.format('DD')
+            var startTimeElement1=moment(element.start_appointment_date);
+            startTimeElement1 = startTimeElement1.format('HH:mm');
+            var endTimeElement2=moment(element.end_appointment_date);
+            endTimeElement2=endTimeElement2.format('HH:mm');
+  
+            console.log(starthour1);
+            console.log(starthour2);
+  
+            startTimes = moment(values.dates[0].$d);
+            endTimes =  moment(values.dates[1].$d);
+            startTimes = startTimes.format('DD-MM-YYYY HH:mm');
+            endTimes = endTimes.format('DD-MM-YYYY HH:mm');
+  
+            var dif= Math.abs(new Date(endTimes) - new Date(startTimes));
+            var minutes = Math.floor((dif/1000)/60);
+            console.log(minutes);       
+            
+  
+            if(dateElement===startDate1 && dateElement===startDate2){
+              if((starthour1 > startTimeElement1 && starthour2 < endTimeElement2) 
+                || (starthour1 > startTimeElement1 && starthour1 < endTimeElement2)
+                || (starthour2 > startTimeElement1  && starthour2 < endTimeElement2)){
+                result=0;
+              }
+            }
+          })
+  
+          
+  
+          if(result===1 && results != null){
+            window.confirm("Appointment successfully booked!");
+            startTimes = moment(values.dates[0].$d);
+            endTimes =  moment(values.dates[1].$d);
+  
+            let data = {start_appointment_date: startTimes.format('DD-MM-YYYY HH:mm'), 
+                        end_appointment_date: endTimes.format('DD-MM-YYYY HH:mm'),
+                        appointment_type_id: id,
+                        staff_id: staffId,
+                        assigned_client_id: clientId,
+                        resource_id: "Booking",
+                        assigned_pets_id: resultType,
+                        notes: additionInfo};
+            console.log(data)
+          }
+  
+          else{
+            window.confirm("Appointment is colliding with another appointment. Please try again.")
+          }
+  
         }
-
       }
+
     };
 
     const onFinishFailed = (errorInfo) => {
       console.log("Failed:", errorInfo);
-    };
-
-    const handleChange = (tag, checked) => {
-      const nextSelectedTags = checked
-        ? [...selectedTag, tag]
-        : selectedTag.filter((t) => t !== tag);
-      const nextResourceMap = [];
-      nextSelectedTags.map((item) => {
-        nextResourceMap.push({ resourceId: item, resourceTitle: item });
-        return item;
-      });
-      setNextTags( nextSelectedTags);
-      setRessource(nextResourceMap);
     };
 
     const handleChangeText=(event) =>{
@@ -192,21 +238,6 @@ function Reformat(){
       <>
       <div>
       <Header />
-        <div align="center" style={{ marginTop: "30px"}}>
-          <p>
-            <span style={{ marginRight: 8 }}>Doctors & Technicians:</span>
-            {employeeTagsData.map((tag) => (
-              <CheckableTag
-                key={tag}
-                checked={selectedTag.indexOf(tag) > -1}
-                onChange={(checked) => handleChange(tag, checked)}
-              >
-                {tag}
-              </CheckableTag>
-            ))}
-          </p>
-
-        </div>
             
         <Divider />
         
@@ -235,23 +266,13 @@ function Reformat(){
             <option value="Select a type ..."> -- Select a value -- </option>
             {}
             {petResults.map((resultType,key) => (
-              <option key={key} value={resultType.pet_name}>{resultType.pet_name}</option>
+              <option key={key} value={resultType.pet_id}>{resultType.pet_name}</option>
             ))}
             </select>
             </Form.Item>
-            <Form.Item
-            labelCol={{ span: 24 }}
-            name="resourceId"
-            label="Book Appointment"
-            rules={[{ required: true, message: "This information is required." }]}>
-            <select>
-            <option value="Select a doctor"> -- Select a value -- </option>
-            {}
-            {employeeTagsData.map((employee) => (
-              <option key={employee}>{employee}</option>
-            ))}
-            </select>
-            </Form.Item>
+            <br>
+            </br>
+            <p>* Cannot book appointment longer then {durTime} minutes</p>
             <Form.Item
             labelCol={{ span: 24 }}
             name="dates"

@@ -58,7 +58,6 @@ CREATE TABLE appointment(
 	end_appointment_date VARCHAR,
 	assigned_pets_id uuid,
 	assigned_client_id uuid,
-	client_name VARCHAR,
 	resource_id VARCHAR,
 	appointment_type_id uuid,
 	staff_id uuid,

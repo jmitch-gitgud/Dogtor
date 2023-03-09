@@ -15,10 +15,12 @@ import { Spin, Tag, Divider, Button, Form} from "antd";
 import Header from "../../components/Header";
 //import Footer from "../components/Footer";
 import {DatePicker} from "antd";
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 
 function AdminReformat(){
 
+    const navigate = useNavigate();
     const [results, setData] = useState([]);
     const [additionInfo, setInfo] = useState('');
     const { staffid,user,type,value,pet } = useParams();
@@ -81,7 +83,7 @@ function AdminReformat(){
       };
     };
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
 
       let startTimes = values.dates[0].$d
       let dt1 = moment(startTimes)
@@ -118,16 +120,36 @@ function AdminReformat(){
         })
 
         if(result===1 && results != null){
-          window.confirm("Appointment successfully booked!");
-          startTimes = moment(values.dates[0].$d);
-          endTimes =  moment(values.dates[1].$d);
+            window.confirm("Appointment successfully booked!");
+            startTimes = moment(values.dates[0].$d);
+            endTimes =  moment(values.dates[1].$d);
 
-          let data = {start_appointment_date: startTimes.format('DD-MM-YYYY HH:mm'), 
-                      end_appointment_date: endTimes.format('DD-MM-YYYY HH:mm'),
+            let data = {start_appointment_date: startTimes.format('YYYY-MM-DD HH:mm:ss'), 
+                      end_appointment_date: endTimes.format('YYYY-MM-DD HH:mm:ss'),
                       appointment_type_id: value,
-                      assigned_Client_id: staffid,
-                      assigned_pets_id: pet};
-          console.log(data)
+                      assigned_client_id: user,
+                      assigned_pets_id: pet,
+                      staff_id: staffid,
+                      resource_id: "Booking",
+                      notes: additionInfo};
+            console.log(data);
+
+
+        const response = await fetch('/adminBook', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+          'Content-Type': 'application/json'
+          }     
+        })
+        const json = (await response.json()).data;
+        if(json === undefined){
+          console.log("Error")
+        }
+        else{
+          console.log("Input")
+          navigate(`/admin-view-users-schedule/${user}`);
+        }
         }
 
         else{
@@ -162,21 +184,6 @@ function AdminReformat(){
       <>
       <div>
       <Header />
-        <div align="center" style={{ marginTop: "30px"}}>
-          <p>
-            <span style={{ marginRight: 8 }}>Doctors & Technicians:</span>
-            {employeeTagsData.map((tag) => (
-              <CheckableTag
-                key={tag}
-                checked={selectedTag.indexOf(tag) > -1}
-                onChange={(checked) => handleChange(tag, checked)}
-              >
-                {tag}
-              </CheckableTag>
-            ))}
-          </p>
-
-        </div>
             
         <Divider />
         
@@ -195,19 +202,6 @@ function AdminReformat(){
              label="Addition Information"
              rules={[{ required: true, message: "This information is required." }]}>
              <textarea value={additionInfo} onChange={handleChangeText} />
-            </Form.Item>
-            <Form.Item
-            labelCol={{ span: 24 }}
-            name="resourceId"
-            label="Book Appointment"
-            rules={[{ required: true, message: "This information is required." }]}>
-            <select>
-            <option value="Select a doctor"> -- Select a value -- </option>
-            {}
-            {employeeTagsData.map((employee) => (
-              <option key={employee}>{employee}</option>
-            ))}
-            </select>
             </Form.Item>
             <Form.Item
             labelCol={{ span: 24 }}

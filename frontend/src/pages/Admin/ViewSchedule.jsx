@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './userSelect.css';
-//import {Routes, Route, useNavigate} from 'react-router-dom';
-//import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -13,14 +11,14 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import 'antd/dist/antd.min.js';
 import { Spin, Tag, Divider, Button, Form} from "antd";
 import Header from "../../components/Header";
-//import Footer from "../components/Footer";
 import {DatePicker} from "antd";
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 
 function ViewUserSchedule(){
 
     const { userId } = useParams();
-
+    const navigate = useNavigate();
     const [schedule,setSchedule]= useState([]);
     const [loading, setLoading]=useState(true);
     const [selectedTag, setNextTags]=useState([]);
@@ -30,6 +28,8 @@ function ViewUserSchedule(){
     const localizer = momentLocalizer(moment);
     const { CheckableTag } = Tag;
     const { RangePicker } = DatePicker;
+
+    let [resultType, setType] = useState("Select a user ...");
 
     const employeeTagsData = ["Booking"];
 
@@ -72,44 +72,72 @@ function ViewUserSchedule(){
       };
     };
 
-    const handleChange = (tag, checked) => {
-      const nextSelectedTags = checked
-        ? [...selectedTag, tag]
-        : selectedTag.filter((t) => t !== tag);
-      const nextResourceMap = [];
-      nextSelectedTags.map((item) => {
-        nextResourceMap.push({ resourceId: item, resourceTitle: item });
-        return item;
-      });
-      setNextTags( nextSelectedTags);
-      setRessource(nextResourceMap);
+    const onFinishFailed = (errorInfo) => {
+      console.log("Failed:", errorInfo);
+    };
+
+    const onFinish = async (values) => {
+      const response = await fetch('/delete/'+resultType, {
+        method: 'DELETE',
+        headers: {
+        'Content-Type': 'application/json'
+        }     
+      })
+      const json = (await response.json()).data;
+      if(json === undefined){
+        console.log("Error")
+      }
+      else{
+        console.log("Deleted")
+        window.location.reload();
+      }
+    }
+
+    let handleChangingOfType = (event) => {
+      setType(event.target.value);
     };
   
     return (
       <>
       <div>
       <Header />
-        <div align="center" style={{ marginTop: "30px"}}>
-          <p>
-            <span style={{ marginRight: 8 }}>Doctors & Technicians:</span>
-            {employeeTagsData.map((tag) => (
-              <CheckableTag
-                key={tag}
-                checked={selectedTag.indexOf(tag) > -1}
-                onChange={(checked) => handleChange(tag, checked)}
-              >
-                {tag}
-              </CheckableTag>
-            ))}
-          </p>
+            
+        <Divider />
+        
 
-        </div>
         
         <Spin spinning={loading} tip="Loading...">
         <div className="flex-container" >
+         <div className="schedulerform" style={{ marginTop: "30px", width: "50%", marginRight: "5%"}} display= "flex">
+         <Form onFinish={onFinish} onFinishFailed={onFinishFailed} name="basic" initialValues={{remember: true}} style={{background: "#D9D9D9"}}>
+
+            <h1 className="padding-bottom-16" style={{textAlign: "center", marginBottom: "30px"}}>Add New Appointment</h1>
+            <div>
+            <Form.Item
+            labelCol={{ span: 24 }}
+            name="Pets Name"
+            label="Appointment to delete "
+            rules={[{ required: true, message: "This information is required." }]}>
+            <select onChange={handleChangingOfType}>
+            <option value="Select a type ..."> -- Select a value -- </option>
+            {}
+            {schedule.map((resultType,key) => (
+              <option key={key} value={resultType.appointment_id}>{resultType.start_appointment_date}</option>
+            ))}
+            </select>
+            </Form.Item>
+            <Form.Item style={{textAlign: "center"}}>
+            <Button type="primary" htmlType="submit">
+             Submit
+            </Button>
+            </Form.Item>
+            
+            </div>
+            </Form>
+          </div>
           <Calendar 
             selectable
-            align="center"
+            align="left"
             resizable
             defaultDate={moment().toDate()}
             defaultView="week"
