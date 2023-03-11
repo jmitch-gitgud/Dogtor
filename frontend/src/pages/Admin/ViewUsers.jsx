@@ -1,5 +1,4 @@
 import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import React from "react";
 import { useEffect, useState } from "react";
 import './UserTable.css';
@@ -63,7 +62,6 @@ function ViewUsers() {
         </table>
       </div>
       </div>
-      <Footer />
     </div>
   );
 }

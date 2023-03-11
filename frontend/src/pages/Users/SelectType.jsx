@@ -1,5 +1,4 @@
 import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import React from "react";
 import { useEffect, useState } from "react";
 import './userSelect.css';
@@ -68,7 +67,6 @@ function SelectType(){
           {resultType}
           <br />
           <button onClick={handleSubmit}>Submit</button>
-          <Footer />
           </div>
         </div>
       );

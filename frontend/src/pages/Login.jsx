@@ -1,5 +1,4 @@
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 import React, { useState } from "react";
 
@@ -72,7 +71,6 @@ function Login() {
         </div>
         {isSubmitted ? <div className="login-success">User is successfully logged in [insert home page here]</div> : renderForm}
       </div>
-      <Footer />
     </div>
   );
 }

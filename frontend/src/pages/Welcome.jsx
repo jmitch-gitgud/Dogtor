@@ -1,5 +1,4 @@
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 import React from "react";
 
@@ -30,7 +29,6 @@ function welcome() {
             </nav>
             </div>
         </div>
-        <Footer />
         </div>
     );
     

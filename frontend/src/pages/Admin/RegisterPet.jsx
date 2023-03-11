@@ -1,5 +1,4 @@
 import AdminNavBar from "../../components/AdminNavBar";
-import Footer from "../../components/Footer";
 
 import React from "react";
 
@@ -14,7 +13,6 @@ function RegisterPet() {
         
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
