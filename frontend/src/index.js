@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
-import Scheduler from "./pages/Scheduler";
 
 import registerServiceWorker from './components/registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -28,6 +27,7 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
 
+            <Route path="welcome" element={<Welcome />} />
             <Route path="register" element={<AdminRegister />} />
             <Route path="register-user" element={<RegisterUser />} />
             <Route path="register-pet" element={<RegisterPet />} />
