@@ -7,15 +7,14 @@ function AdminNavBar() {
     <header>
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="/">Dogtor</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/admin/pet-profiles">Pet Profiles</Nav.Link>
-            <Nav.Link href="/register">Register</Nav.Link>
-            <Nav.Link href="/admin-schedule">Schedule</Nav.Link>
-            <Nav.Link href="/admin-settings">Settings</Nav.Link>
-            <Nav.Link href="/">Logout</Nav.Link>
+        <Navbar.Brand className="navbar-brand" href="/welcome">Dogtor</Navbar.Brand>
+        <Navbar.Collapse className="navbar-collapse" id="basic-navbar-nav">
+          <Nav className="me-auto navbar-items">
+            <Nav.Link className="navbar-item" href="/admin/pet-profiles">Pet Profiles</Nav.Link>
+            <Nav.Link className="navbar-item" href="/register">Register</Nav.Link>
+            <Nav.Link className="navbar-item" href="/admin-schedule">Schedule</Nav.Link>
+            <Nav.Link className="navbar-item" href="/admin-settings">Settings</Nav.Link>
+            <Nav.Link className="navbar-item" href="/">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

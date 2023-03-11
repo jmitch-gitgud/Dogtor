@@ -14,7 +14,7 @@
   
   header {
     font-family: 'Kanit', sans-serif;
-    background-color: #05A;
+    background-color: #9DB9D2;
     margin: auto -16px;
     padding: 4px 32px;
   }
@@ -257,4 +257,32 @@
     font-family: inherit;
     resize: none;
     margin: 1rem auto;
+  }
+
+  /* ----- NAVBARS  ----- */
+
+  .navbar-brand {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    position:relative;
+    left: 1%;
+    font-size: 3rem;
+  }
+
+  .navbar-collapse {
+    display: inline-block;
+  }
+
+  .navbar-items {
+    display: inline-block;
+    position:relative;
+    left: 145%;
+  }
+
+  .navbar-item {
+    color: #fff;
+    text-decoration: none;
+    margin: auto 1.25rem;
+    font-size: 1.5rem;
   }

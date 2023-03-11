@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 
@@ -11,6 +12,8 @@ function Login() {
     "Invalid": "Invalid Username or Password",
     "Error": "ERROR: looks like something went wrong..."
   };
+
+  const navigate = useNavigate();
   
   const handleSubmit = (event) => {
     var { uname, pass } = document.forms[0];
@@ -69,7 +72,7 @@ function Login() {
       <div className="login-form">
         <div className="login-header padding-top-128">
         </div>
-        {isSubmitted ? <div className="login-success">User is successfully logged in [insert home page here]</div> : renderForm}
+        {isSubmitted ? navigate("/welcome") : renderForm}
       </div>
     </div>
   );
