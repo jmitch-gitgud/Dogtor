@@ -1,11 +1,10 @@
-import Header from "../../components/Header";
-
+import AdminNavBar from "../../components/AdminNavBar";
 import React from "react";
 
 function RegisterUser() {
   return (
     <div>
-      <Header />
+      <AdminNavBar />
       <div className="login-header padding-top-128">
 
         <div className="gray-box">

@@ -1,4 +1,4 @@
-import Header from "../../components/Header";
+import AdminNavBar from "../../components/AdminNavBar";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -34,7 +34,7 @@ function ViewPet(){
     /*Returns a formated version of the information which will provide the admin with all the information regarding the pet  */
     return (
         <div>
-        <Header />
+        <AdminNavBar />
         <div className="login-header padding-top-128">
           <div className="UserTable">
               {results.map((pet) => {
