@@ -3,7 +3,9 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Welcome from "./pages/Welcome";
+import StaffWelcome from "./pages/StaffWelcome";
+import ClientWelcome from "./pages/Client/ClientWelcome";
+import AdminWelcome from "./pages/Admin/AdminWelcome";
 
 import registerServiceWorker from './components/registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -27,7 +29,10 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
 
-            <Route path="welcome" element={<Welcome />} />
+            <Route path="admin-welcome" element={<AdminWelcome />} />
+            <Route path="client-welcome" element={<ClientWelcome />} />
+            <Route path="staff-welcome" element={<StaffWelcome />} />
+
             <Route path="register" element={<AdminRegister />} />
             <Route path="register-user" element={<RegisterUser />} />
             <Route path="register-pet" element={<RegisterPet />} />

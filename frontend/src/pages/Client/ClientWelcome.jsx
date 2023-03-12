@@ -1,4 +1,4 @@
-import ClientNavBar from "../components/ClientNavBar";
+import ClientNavBar from "../../components/ClientNavBar";
 
 import React from "react";
 
