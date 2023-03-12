@@ -9,29 +9,18 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import 'antd/dist/antd.min.js';
-import { Spin, Tag, Divider, Button, Form} from "antd";
+import { Spin, Divider, Button, Form} from "antd";
 import Header from "../../components/Header";
-import {DatePicker} from "antd";
-import {Routes, Route, useNavigate} from 'react-router-dom';
 
 
 function ViewUserSchedule(){
 
     const { userId } = useParams();
-    const navigate = useNavigate();
     const [schedule,setSchedule]= useState([]);
     const [loading, setLoading]=useState(true);
-    const [selectedTag, setNextTags]=useState([]);
-    const [resourceMap, setRessource]=useState([
-          { resourceId: "Booking", resourceTitle: "Booking" },
-        ],);
     const localizer = momentLocalizer(moment);
-    const { CheckableTag } = Tag;
-    const { RangePicker } = DatePicker;
-
     let [resultType, setType] = useState("Select a user ...");
 
-    const employeeTagsData = ["Booking"];
 
    
 
@@ -149,7 +138,6 @@ function ViewUserSchedule(){
             localizer={localizer}
             style={{ height: "50%", width: "50%"}}
             eventPropGetter={eventPropGetter}
-            resources={resourceMap}
             resourceIdAccessor="resourceId"
             resourceTitleAccessor="resourceTitle"
           />

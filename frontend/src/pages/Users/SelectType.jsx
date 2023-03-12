@@ -1,10 +1,8 @@
 import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import React from "react";
 import { useEffect, useState } from "react";
 import './userSelect.css';
-import { Link } from "react-router-dom";
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -80,7 +78,6 @@ function SelectType(){
           {}
           <br />
           <button onClick={handleSubmit}>Submit</button>
-          <Footer />
           </div>
         </div>
       );

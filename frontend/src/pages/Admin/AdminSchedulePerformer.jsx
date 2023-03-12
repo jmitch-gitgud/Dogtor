@@ -1,10 +1,8 @@
 import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import React from "react";
 import { useEffect, useState } from "react";
 import './userSelect.css';
-import { Link } from "react-router-dom";
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -47,18 +45,10 @@ function AdminSelectPerformer(){
 
     const handleSubmit = (event) => {
 
-        let resultId;
         if(resultType==="Select a type ..."){
             alert('Please Select type of appointment')
         }
         else{
-          results.forEach((element) => {
-            var e1=element.staff_username;
-            var e2=resultType;
-            if(e1===e2){
-              resultId=element.staff_id;
-            }
-          });
           navigate(`/admin-schedule/${user}/pet/${pet}/type/${type}/value/${value}/staff/${resultType}`);
         }
     }
@@ -87,7 +77,6 @@ function AdminSelectPerformer(){
           {}
           <br />
           <button onClick={handleSubmit}>Submit</button>
-          <Footer />
           </div>
         </div>
       );

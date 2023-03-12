@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './userSelect.css';
-//import {Routes, Route, useNavigate} from 'react-router-dom';
-//import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -11,11 +9,10 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import 'antd/dist/antd.min.js';
-import { Spin, Tag, Divider, Button, Form} from "antd";
+import { Spin, Divider, Button, Form} from "antd";
 import Header from "../../components/Header";
-//import Footer from "../components/Footer";
 import {DatePicker} from "antd";
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 
 function AdminReformat(){
@@ -23,18 +20,11 @@ function AdminReformat(){
     const navigate = useNavigate();
     const [results, setData] = useState([]);
     const [additionInfo, setInfo] = useState('');
-    const { staffid,user,type,value,pet } = useParams();
+    const { staffid,user,value,pet } = useParams();
     const [schedule,setSchedule]= useState([]);
     const [loading, setLoading]=useState(true);
-    const [selectedTag, setNextTags]=useState([]);
-    const [resourceMap, setRessource]=useState([
-          { resourceId: "Booking", resourceTitle: "Booking" },
-        ],);
     const localizer = momentLocalizer(moment);
-    const { CheckableTag } = Tag;
     const { RangePicker } = DatePicker;
-
-    const employeeTagsData = ["Booking"];
 
     useEffect(() => {
       (async () => {
@@ -64,12 +54,7 @@ function AdminReformat(){
 
 
     const clientId  = "f827d38b-764a-4018-b6aa-1f2688bd84d0";
-    const [petResults, setpets] = useState([]);
-    let [resultType, setPet] = useState("Select a pet ...");
 
-    let handleChangingOfType = (event) => {
-      setPet(event.target.value);
-    };
 
     const eventPropGetter = (event) => {
       let newStyle = {
@@ -163,19 +148,6 @@ function AdminReformat(){
       console.log("Failed:", errorInfo);
     };
 
-    const handleChange = (tag, checked) => {
-      const nextSelectedTags = checked
-        ? [...selectedTag, tag]
-        : selectedTag.filter((t) => t !== tag);
-      const nextResourceMap = [];
-      nextSelectedTags.map((item) => {
-        nextResourceMap.push({ resourceId: item, resourceTitle: item });
-        return item;
-      });
-      setNextTags( nextSelectedTags);
-      setRessource(nextResourceMap);
-    };
-
     const handleChangeText=(event) =>{
       setInfo(event.target.value);
     }
@@ -234,7 +206,6 @@ function AdminReformat(){
             localizer={localizer}
             style={{ height: "50%", width: "50%"}}
             eventPropGetter={eventPropGetter}
-            resources={resourceMap}
             resourceIdAccessor="resourceId"
             resourceTitleAccessor="resourceTitle"
           />
