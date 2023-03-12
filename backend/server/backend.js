@@ -1,6 +1,6 @@
 const {Client} = require("pg");
 
-const dbPass = 'ROY25';
+const dbPass = 'jordan_rocks';
 
 function schedule(details, date, vet, tech, pet, cust, compla, res) {
   const client = new Client({
@@ -31,7 +31,7 @@ function schedule(details, date, vet, tech, pet, cust, compla, res) {
   })
 }
 
-function login(u, p, res) {
+function login(u, p, r, res) {
     const client = new Client({
         host: '127.0.0.1',
         user: 'postgres',
@@ -40,8 +40,19 @@ function login(u, p, res) {
         port: 5432,
       });
 
-      const text = 'SELECT * FROM "public"."User" WHERE "Username" = $1 AND "Password" = $2'
+      let text;
+
+      if(r === "admin") {
+        text = 'SELECT admin_id FROM "public"."admins" WHERE "admin_name" = $1 AND "admin_password" = crypt($2, (SELECT admin_password from "public"."admins" where "admin_name" = $1));'
+      } else if(role === "staff") {
+        text = 'SELECT staff_id FROM "public"."staff" WHERE "staff_username" = $1 AND "staff_password" = crypt($2, (SELECT staff_password from "public"."staff" where "staff_username" = $1));'
+      } else if(role === "client"){
+        text = 'SELECT client_id FROM "public"."clients" WHERE "client_username" = $1 AND "client_password" = crypt($2, (SELECT client_password from "public"."clients" where "client_username" = $1));'
+      }
+
       const values = [u, p]
+      let id;
+      let nextPage;
       
         client.connect(err => {
           if (err) {
@@ -57,8 +68,20 @@ function login(u, p, res) {
                 res.writeHead(404, { "Content-Type": "application/json" });
                 res.end(JSON.stringify({status: "Invalid credentials"}));
                 } else {
+
+                  if(r === 'admin') {
+                    id = pgres.rows[0].admin_id;
+                    nextPage = '/admin-welcome'
+                  } else if(r === 'staff') {
+                    id = pgres.rows[0].staff_id;
+                    nextPage = '/staff-welcome'
+                  } else {
+                    id = pgres.rows[0].client_id;
+                    nextPage = '/client-welcome'
+                  }
+
                   res.writeHead(200, { "Content-Type": "application/json" });
-                  res.end(JSON.stringify({status: "Logged in"}));
+                  res.end(JSON.stringify({status: "Logged in", id: id, page: nextPage}));
                   }
                 }
               });

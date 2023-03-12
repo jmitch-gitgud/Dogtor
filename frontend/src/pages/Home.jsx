@@ -14,7 +14,7 @@ function Home() {
         <p className="padding-bottom-32">Here for all of your vet scheduling needs!</p>
         <nav>
           <Link to="/login">
-            <button className="login-button" type="button">
+            <button className="login-button home-button" type="button">
               Continue
             </button>
           </Link>
