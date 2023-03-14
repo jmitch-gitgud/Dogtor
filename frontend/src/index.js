@@ -32,6 +32,7 @@ import AdminReformat from "./pages/Admin/AdminScheduleBooking"
 import ViewUserSchedule from "./pages/Admin/ViewSchedule"
 import UserHome from "./pages/Users/UserHomePage"
 import AdminHome from "./pages/Admin/AdminHomePage"
+import ViewSpecUserSchedule from "./pages/Users/ViewUserSchedule"
 
 export default function App() {
     return (
@@ -56,20 +57,19 @@ export default function App() {
             <Route path="admin-view-users-schedule/:userId" element={<ViewUserSchedule />} />
             <Route path="admin-view-users-pets/:id" element={<ViewUsersPets />} />
             <Route path="admin-view-users-pet/:id" element={<ViewPet />} />
-            <Route path="user-select-type" element={<SelectType />} />
-            <Route path="user-select-type/:type" element={<SelectValue />} />
-            <Route path="user-select-type/:type/type-id/:id" element={<SelectPerformer />} />
-            <Route path="user-schedule/:id/staff/:staffId" element={<Reformat />} />
+            <Route path="user-select-type/:userId" element={<SelectType />} />
+            <Route path="user-select-type/:userId/type/:type" element={<SelectValue />} />
+            <Route path="user-select-type/:userId/type/:type/type-id/:id" element={<SelectPerformer />} />
+            <Route path="user-schedule/:id/staff/:staffId/user/:userId" element={<Reformat />} />
             <Route path="admin-schedule" element={<SelectUser />} />
             <Route path="admin-schedule/:user" element={<SelectPet />} />
             <Route path="admin-schedule/:user/pet/:pet" element={<AdminSelectType />} />
             <Route path="admin-schedule/:user/pet/:pet/type/:type" element={<AdminSelectValue />} />
             <Route path="admin-schedule/:user/pet/:pet/type/:type/value/:value" element={<AdminSelectPerformer />} />
             <Route path="admin-schedule/:user/pet/:pet/type/:type/value/:value/staff/:staffid" element={<AdminReformat />} />
-            <Route path="user" element={<UserHome />} />
+            <Route path="user/:userId" element={<UserHome />} />
+            <Route path="view-user-schedule/:userId" element={<ViewSpecUserSchedule />} />
             <Route path="admin" element={<AdminHome />} />
-            <Route path="demo" element={<Scheduler />} />
-            <Route path="demo/:staffId" element={<Reformat />} />
                         
           </Route>
         </Routes>

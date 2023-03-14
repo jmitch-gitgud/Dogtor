@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import React from "react";
 import { useEffect, useState } from "react";
-import './userSelect.css';
+import './AdminSelect.css';
 import { useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,7 +17,7 @@ function AdminSelectType(){
     const [results, setData] = useState([]);
     let [resultType, setType] = useState("Select a type ...");
     const navigate = useNavigate();
-    const now = 75;
+    const now = 48;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -62,7 +62,7 @@ function AdminSelectType(){
         <div>
         <ProgressBar now={now} label={`${now}%`} />
         </div>
-          <div className="centered">
+          <div className="box3">
           <select onChange={handleChangingOfType}>
             <option value="Select a type ..."> -- Select a type -- </option>
             {}

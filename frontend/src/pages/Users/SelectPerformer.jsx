@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Divider } from "antd";
 
 
 let start=[];
@@ -13,11 +14,11 @@ let start=[];
 /* The following function deals with the first step in booking appointments*/
 function SelectPerformer(){
 
-    const {id} = useParams();
+    const {id,userId} = useParams();
     const [results, setData] = useState([]);
-    let [resultType, setType] = useState("Select a type ...");
+    let [resultType, setType] = useState("Select who will perform ...");
     const navigate = useNavigate();
-    const now = 75;
+    const now = 60;
 
     
     let handleChangingOfType = (event) => {
@@ -46,7 +47,7 @@ function SelectPerformer(){
     const handleSubmit = (event) => {
 
         let resultId;
-        if(resultType==="Select a type ..."){
+        if(resultType==="Select who will perform ..."){
             alert('Please Select type of appointment')
         }
         else{
@@ -57,7 +58,7 @@ function SelectPerformer(){
               resultId=element.staff_id;
             }
           });
-          navigate(`/user-schedule/${id}/staff/${resultId}`);
+          navigate(`/user-schedule/${id}/staff/${resultId}/user/${userId}`);
         }
     }
 
@@ -69,13 +70,15 @@ function SelectPerformer(){
         <div>
         <Header />
         <br></br>
-        <p>Book Appointment: Select type of appointment</p>
+        <p>Book Appointment: Select who will perform appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
+        <Divider/>
+        <p> * If a vet is not seen it is due to the fact that currently are not qualified to perform task </p>
         </div>
-          <div className="centered">
+          <div className="centered2">
           <select onChange={handleChangingOfType}>
-            <option value="Select a type ..."> -- Select a type -- </option>
+            <option value="Select who will perform ..."> -- Select who will perform -- </option>
             {}
             {results.map((resultType,key) => (
               <option key={key} value={resultType.staff_username}>{resultType.staff_username}</option>

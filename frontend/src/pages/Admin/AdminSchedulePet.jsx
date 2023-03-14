@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import React from "react";
 import { useEffect, useState } from "react";
-import './userSelect.css';
+import './AdminSelect.css';
 import { useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,7 +17,7 @@ function SelectPet(){
     const [results, setData] = useState([]);
     let [resultType, setType] = useState("Select a pet ...");
     const navigate = useNavigate();
-    const now = 50;
+    const now = 32;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -44,7 +44,7 @@ function SelectPet(){
 
     const handleSubmit = (event) => {
         if(resultType==="Select a pet ..."){
-            alert('Please Select pet')
+            alert('Please select pet')
         }
         else{
             console.log(resultType)
@@ -62,7 +62,7 @@ function SelectPet(){
         <div>
         <ProgressBar now={now} label={`${now}%`} />
         </div>
-          <div className="centered">
+          <div className="box2">
           <select onChange={handleChangingOfType}>
             <option value="Select a pet ..."> -- Select a pet -- </option>
             {}

@@ -1,6 +1,6 @@
 const {Client} = require("pg");
 
-const dbPass = 'jordan_rocks';
+const dbPass = 'ROY25';
 
 function schedule(details, date, vet, tech, pet, cust, compla, res) {
   const client = new Client({
