@@ -4,7 +4,7 @@ const client = new Client({
     host: '127.0.0.1',
     user: 'postgres',
     password: 'jordan_rocks',
-    database: 'testbase',
+    database: 'postgres',
     port: 5432,
 });
 
@@ -29,7 +29,7 @@ const setupDatabase = async () => {
 
         // Setting up database and tables
         await client.query("Create Table if not exists admins(admin_id uuid DEFAULT uuid_generate_v4 (), admin_name VARCHAR NOT NULL, admin_password VARCHAR NOT NULL, PRIMARY KEY(admin_id));");
-        await client.query("Create Table if not exists clients(client_id uuid DEFAULT uuid_generate_v4 (), client_username VARCHAR NOT NULL, client_password VARCHAR NOT NULL, client_notes VARCHAR, PRIMARY KEY(client_id));");
+        await client.query("Create Table if not exists clients(client_id uuid DEFAULT uuid_generate_v4 (), client_name VARCHAR NOT NULL, client_username VARCHAR NOT NULL, client_password VARCHAR NOT NULL, client_notes VARCHAR, PRIMARY KEY(client_id));");
         await client.query('Create Table if not exists pets(pet_id uuid DEFAULT uuid_generate_v4 (), pet_name VARCHAR NOT NULL, pet_appointements_notes TEXT [], owner_id uuid, pet_age int, pet_weight int, pet_sex VARCHAR,  pet_neutered BOOLEAN, who_performed_last VARCHAR, last_date date, pets_behaviour TEXT, pet_active BOOLEAN, PRIMARY KEY(pet_id), FOREIGN KEY (owner_id) REFERENCES "clients" (client_id));');        
         await client.query("Create Table if not exists staff(staff_id uuid DEFAULT uuid_generate_v4 (), staff_username VARCHAR NOT NULL, staff_password VARCHAR NOT NULL, staff_start_time time, staff_end_time time, catagory INT, PRIMARY KEY(staff_id));");
         await client.query("Create Table if not exists appointment_type(appointment_type_id uuid DEFAULT uuid_generate_v4 (), appointment_type_catagory VARCHAR, appointment_type_value VARCHAR, appointment_type_duration INT, PRIMARY KEY(appointment_type_id));");
@@ -56,7 +56,7 @@ const setupDatabase = async () => {
 
         await client.query("INSERT INTO admins(admin_name,admin_password) VALUES ('AndreAucoin',crypt('password', gen_salt('md5')));");
         await client.query("INSERT INTO admins(admin_name,admin_password) VALUES ('jordanmitchell247',crypt('pass1', gen_salt('md5')));");
-        await client.query("INSERT INTO clients(client_username, client_password) VALUES ('JohnDuck',crypt('password', gen_salt('md5')));");
+        await client.query("INSERT INTO clients(client_name, client_username, client_password) VALUES ('John Smith', 'JohnDuck', crypt('password', gen_salt('md5')));");
         await client.query("INSERT INTO staff(staff_username, staff_password,catagory) VALUES ('Donald Duck',crypt('password', gen_salt('md5')),1);");
     
     } catch (error) {

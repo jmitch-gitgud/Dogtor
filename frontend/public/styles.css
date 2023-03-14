@@ -68,9 +68,9 @@
     padding-bottom: 6rem;
   }
 
-  .grey-box{
+  .gray-box {
 
-    border-color: #05A;
+    border-color: rgb(138, 137, 137);;
     border-radius: 0.5rem;
     
   }
@@ -159,19 +159,6 @@
     background: #fff;
     padding: 2rem 2rem 1rem 2rem;
     border-radius: 0.5rem;
-  }
-
-  .register-user-button {
-    margin-top: 5%;
-  }
-
-  .register-pet-button {
-    margin-bottom: 5%;
-  }
-
-  .register-button:hover {
-    background-color: rgb(43, 43, 44);
-    border-color: rgb(43, 43, 44);
   }
 
   .welcomeform {
@@ -341,3 +328,60 @@
     background-color: #0d6efd;
     color: #fff;
   }
+
+   /* ----- REGISTER PAGE  ----- */
+
+   .register-gray-box {
+    width: 40%;
+    background-color: #D9D9D9;
+    position: relative;
+    left: 30%;
+   }
+
+   .register-user-button {
+    margin-top: 5%;
+    background-color: #545454;
+    color: #fff;
+    font-size: 1.8rem;
+    width: 14rem;
+    height: 5rem;
+    margin-bottom: 5%;
+
+    border-color: #545454;
+    border-radius: 0.5rem;
+    position: relative;
+    left: 35%
+  }
+
+  .register-pet-button {
+    margin-bottom: 5%;
+    background-color: #545454;
+    color: #fff;
+    font-size: 1.8rem;
+    width: 14rem;
+    height: 5rem;
+    margin-bottom: 5%;
+
+    border-color: #545454;
+    border-radius: 0.5rem;
+    position: relative;
+    left: 35%
+  }
+
+  .register-button:hover {
+    background-color: rgb(43, 43, 44);
+    border-color: rgb(43, 43, 44);
+  }
+
+  /* ----- REGISTER USER PAGE  ----- */
+
+  .page-marker {
+    color: black;
+    position: relative;
+    left: 38%;
+    top: 2rem;
+    font-size: 1.5rem;
+  }
+
+
+  /* ----- REGISTER PET PAGE  ----- */
