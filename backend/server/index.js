@@ -41,8 +41,8 @@ app.route('/viewPet/:id').get((req,res) => {
 app.route('/check').post((req, res) => {
   username = req.body.Username;
   password = req.body.Password;
-  backend.login(username, password, res);
-
+  role = req.body.Role;
+  backend.login(username, password, role, res);
 });
 
 app.route('/appointment').post((req, res) => {

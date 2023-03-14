@@ -1,4 +1,4 @@
-import Header from "../../components/Header";
+import AdminNavBar from "../../components/AdminNavBar";
 import React from "react";
 import { useEffect, useState } from "react";
 import './UserTable.css';
@@ -35,7 +35,7 @@ function ViewUsers() {
   /* Returns the values stored as a table, so that the admins can select which user they would like to see */
   return (
     <div>
-      <Header />
+      <AdminNavBar />
       <div className="login-header padding-top-128">
         <div className="UserTable">
         <table>

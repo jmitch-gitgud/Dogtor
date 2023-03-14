@@ -1,5 +1,4 @@
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 import { Link } from "react-router-dom";
 import React from "react";
@@ -15,7 +14,7 @@ function Home() {
         <p className="padding-bottom-32">Here for all of your vet scheduling needs!</p>
         <nav>
           <Link to="/login">
-            <button className="login-button" type="button">
+            <button className="login-button home-button" type="button">
               Continue
             </button>
           </Link>
@@ -23,7 +22,6 @@ function Home() {
         
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

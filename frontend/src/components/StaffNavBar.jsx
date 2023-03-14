@@ -11,7 +11,6 @@ function AdminNavBar() {
         <Navbar.Collapse className="navbar-collapse" id="basic-navbar-nav">
           <Nav className="me-auto navbar-items">
             <Nav.Link className="navbar-item" href="/admin/pet-profiles">Pet Profiles</Nav.Link>
-            <Nav.Link className="navbar-item" href="/register">Register</Nav.Link>
             <Nav.Link className="navbar-item" href="/admin-schedule">Schedule</Nav.Link>
             <Nav.Link className="navbar-item" href="/admin-settings">Settings</Nav.Link>
             <Nav.Link className="navbar-item" href="/">Logout</Nav.Link>

@@ -1,4 +1,4 @@
-import Header from "../components/AdminNavBar";
+import AdminNavBar from "../../components/AdminNavBar";
 
 import React from "react";
 
@@ -6,7 +6,7 @@ function welcome() {
     return(
 
         <div>
-        <Header />
+        <AdminNavBar />
 
         <div className="login-header padding-top-64"></div>
         

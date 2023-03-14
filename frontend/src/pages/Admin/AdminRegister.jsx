@@ -1,4 +1,4 @@
-import Header from "../../components/Header";
+import AdminNavBar from "../../components/AdminNavBar";
 
 import { Link } from "react-router-dom";
 import React from "react";
@@ -6,7 +6,7 @@ import React from "react";
 function AdminRegister() {
     return (
       <div>
-        <Header />
+        <AdminNavBar />
         <div className="padding-top-128">
   
           <div className="gray-box">

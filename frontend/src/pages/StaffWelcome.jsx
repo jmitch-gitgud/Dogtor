@@ -1,4 +1,4 @@
-import Header from "../components/AdminNavBar";
+import StaffNavBar from "../components/StaffNavBar";
 
 import React from "react";
 
@@ -6,13 +6,9 @@ function welcome() {
     return(
 
         <div>
-        <Header />
+        <StaffNavBar />
 
         <div className="login-header padding-top-64"></div>
-        
-          <button className="login-button" type="button">
-                Edit
-          </button>
 
           <div className="welcomeform" style={{ marginTop: "30px"}}>
 
