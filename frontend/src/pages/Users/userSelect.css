@@ -5,6 +5,17 @@
   margin-top: 300px;
   margin-bottom: 300px;
   width: 8em;
-  width: 15%;
+  width: 25%;
+  padding: 10px;
+}
+
+.centered2 {
+  border: 3px solid #9DB9D2;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 300px;
+  width: 8em;
+  width: 50%;
   padding: 10px;
 }

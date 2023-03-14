@@ -10,7 +10,6 @@ import { PlusOutlined } from "@ant-design/icons";
 import { default as AddNewSchedule } from "../components/AddNewSchedule";
 import { default as EditSchedule } from "../components/EditSchedule";
 import Header from "../components/Header";
-//import Footer from "../components/Footer";
 import {DatePicker} from "antd";
 const { Option } = Select;
 
@@ -34,7 +33,7 @@ const onFinish = (values) => {
 
 
   var newDate = tempDate.slice(1, 11);
-  console.log("Success:", values);
+  console.log(totalStartTime);
   //Can directly call props here
 
   fetch("./data-EmployeeSchedule.json")

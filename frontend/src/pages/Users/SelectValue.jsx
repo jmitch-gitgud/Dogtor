@@ -1,6 +1,7 @@
 import Header from "../../components/Header";
 import React from "react";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import './userSelect.css';
 import {useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
@@ -10,12 +11,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 let start=[];
 
 /* The following function deals with the first step in booking appointments*/
-function SelectType(){
+function SelectValue(){
 
+    const { type } = useParams();
     const [results, setData] = useState([]);
-    let [resultType, setType] = useState("Select a type ...");
+    let [resultType, setType] = useState("Select a value ...");
     const navigate = useNavigate();
-    const now = 25;
+    const now = 50;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -24,7 +26,7 @@ function SelectType(){
 
     useEffect(() => {
         (async () => {
-          const response = await fetch('/selectType', {
+          const response = await fetch('/viewType/'+type, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json'
@@ -38,23 +40,18 @@ function SelectType(){
             setData(json);
           }
         })();
-    }, []);
+    }, [type]);
 
     const handleSubmit = (event) => {
-        if(resultType==="Select a type ..."){
-            alert('Please Select type of appointment')
-        }
-        else if(resultType==="Emergency Appointment"){
-            alert('Please contact clinic for imidiate assistance at 902-XXX-XXXX')
-        }
-        else if(resultType==="Surgeries"){
-            alert('Please contact clinic in order to discuss next steps at 902-XXX-XXXX')
+        if(resultType==="Select a value ..."){
+            alert('Please Select value of appointment')
         }
         else{
-          navigate(`/user-select-type/${resultType}`);
+          navigate(`/user-select-type/${type}/type-id/${resultType}`);
         }
-        console.log(resultType)
     }
+  
+    console.log(results)
 
 
     
@@ -68,10 +65,10 @@ function SelectType(){
         </div>
           <div className="centered">
           <select onChange={handleChangingOfType}>
-            <option value="Select a type ..."> -- Select a type -- </option>
+            <option value="Select a type ..."> -- Select a value -- </option>
             {}
             {results.map((resultType,key) => (
-              <option key={key} value={resultType.appointment_type_catagory}>{resultType.appointment_type_catagory}</option>
+              <option key={key} value={resultType.appointment_type_id}>{resultType.appointment_type_value}</option>
             ))}
           </select>
           <br />
@@ -83,4 +80,4 @@ function SelectType(){
       );
 }
 
-export default SelectType;
+export default SelectValue;

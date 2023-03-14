@@ -1,5 +1,4 @@
 import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import React from "react";
 import { useEffect, useState } from "react";
 import './UserTable.css';
@@ -44,7 +43,8 @@ function ViewUsers() {
           <tr>
             <th>Name</th>
             <th>Age</th>
-            <th>link</th>
+            <th>Pets</th>
+            <th>Schedule</th>
           </tr>
           {results.map((val, key) => {
             return (
@@ -53,7 +53,12 @@ function ViewUsers() {
                 <td>{val.client_username}</td>
                 <td>
                 <Link to={`/admin-view-users-pets/${val.client_id}`}>
-                  view pets
+                  View pets
+                </Link> 
+                </td>
+                <td>
+                <Link to={`/admin-view-users-schedule/${val.client_id}`}>
+                  View schedule
                 </Link> 
                 </td>
               </tr>
@@ -63,7 +68,6 @@ function ViewUsers() {
         </table>
       </div>
       </div>
-      <Footer />
     </div>
   );
 }

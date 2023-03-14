@@ -2,20 +2,22 @@ import Header from "../../components/Header";
 import React from "react";
 import { useEffect, useState } from "react";
 import './userSelect.css';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useParams } from "react-router-dom";
 
 
 let start=[];
 
 /* The following function deals with the first step in booking appointments*/
-function SelectType(){
+function SelectPet(){
 
+    const { user } = useParams();
     const [results, setData] = useState([]);
-    let [resultType, setType] = useState("Select a type ...");
+    let [resultType, setType] = useState("Select a pet ...");
     const navigate = useNavigate();
-    const now = 25;
+    const now = 50;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -24,7 +26,7 @@ function SelectType(){
 
     useEffect(() => {
         (async () => {
-          const response = await fetch('/selectType', {
+          const response = await fetch('/viewUsersPet/'+user, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json'
@@ -38,22 +40,16 @@ function SelectType(){
             setData(json);
           }
         })();
-    }, []);
+    }, [user]);
 
     const handleSubmit = (event) => {
-        if(resultType==="Select a type ..."){
-            alert('Please Select type of appointment')
-        }
-        else if(resultType==="Emergency Appointment"){
-            alert('Please contact clinic for imidiate assistance at 902-XXX-XXXX')
-        }
-        else if(resultType==="Surgeries"){
-            alert('Please contact clinic in order to discuss next steps at 902-XXX-XXXX')
+        if(resultType==="Select a pet ..."){
+            alert('Please Select pet')
         }
         else{
-          navigate(`/user-select-type/${resultType}`);
+            console.log(resultType)
+            navigate(`/admin-schedule/${user}/pet/${resultType}`);
         }
-        console.log(resultType)
     }
 
 
@@ -62,16 +58,16 @@ function SelectType(){
         <div>
         <Header />
         <br></br>
-        <p>Book Appointment: Select classsification of appointment</p>
+        <p>Book Appointment: Select pet for appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
         </div>
           <div className="centered">
           <select onChange={handleChangingOfType}>
-            <option value="Select a type ..."> -- Select a type -- </option>
+            <option value="Select a pet ..."> -- Select a pet -- </option>
             {}
             {results.map((resultType,key) => (
-              <option key={key} value={resultType.appointment_type_catagory}>{resultType.appointment_type_catagory}</option>
+              <option key={key} value={resultType.pet_id}>{resultType.pet_name}</option>
             ))}
           </select>
           <br />
@@ -83,4 +79,4 @@ function SelectType(){
       );
 }
 
-export default SelectType;
+export default SelectPet;
