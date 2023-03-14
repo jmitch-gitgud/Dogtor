@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import React from "react";
 import './AdminSelect.css';
 
-import {Routes, Route, useNavigate} from 'react-router-dom';
-
 function AdminHome() {
   return (
     <div>

@@ -56,7 +56,6 @@ function AdminReformat(){
 
 
 
-    const clientId  = "f827d38b-764a-4018-b6aa-1f2688bd84d0";
 
 
     const eventPropGetter = (event) => {
