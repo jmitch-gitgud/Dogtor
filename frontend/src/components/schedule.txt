@@ -29,16 +29,16 @@ class Scheduler extends Component {
       loading: true,
       selectedTags: employeeTagsData,
       resourceMap: [
-        { resourceId: "Employee #1720", resourceTitle: "Employee #1720" },
-        { resourceId: "Employee #1755", resourceTitle: "Employee #1755" },
-        { resourceId: "Employee #1775", resourceTitle: "Employee #1775" }
+        { resource_id: "Employee #1720", resourceTitle: "Employee #1720" },
+        { resource_id: "Employee #1755", resourceTitle: "Employee #1755" },
+        { resource_id: "Employee #1775", resourceTitle: "Employee #1775" }
       ],
       employee: [],
       visible: false,
       editScheduleModalVisible: false,
       lastScheduleIndex: 450,
       record: [],
-      resourceId: null,
+      resource_id: null,
       dates: []
     };
   }
@@ -82,7 +82,7 @@ class Scheduler extends Component {
       : selectedTags.filter((t) => t !== tag);
     const nextResourceMap = [];
     nextSelectedTags.map((item) => {
-      nextResourceMap.push({ resourceId: item, resourceTitle: item });
+      nextResourceMap.push({ resource_id: item, resourceTitle: item });
       return item;
     });
 
@@ -126,7 +126,7 @@ class Scheduler extends Component {
       lastName: values.lastName,
       firstName: values.firstName,
       title: values.lastName + ", " + values.firstName,
-      resourceId: values.resourceId,
+      resource_id: values.resource_id,
       client: values.client,
       start: moment(values.dates[0]).toDate(),
       end: moment(values.dates[1]).toDate(),
@@ -140,7 +140,7 @@ class Scheduler extends Component {
     this.setState({
       editScheduleModalVisible: true,
       record: record,
-      resourceId: record.resourceId,
+      resource_id: record.resource_id,
       dates: [moment(record.start), moment(record.end)]
     });
   };
@@ -230,7 +230,7 @@ class Scheduler extends Component {
             style={{ height: "100vh" }}
             eventPropGetter={this.eventPropGetter}
             resources={resourceMap}
-            resourceIdAccessor="resourceId"
+            resourceIdAccessor="resource_id"
             resourceTitleAccessor="resourceTitle"
             onSelectEvent={(record) => this.editSchedule(record)}
           />

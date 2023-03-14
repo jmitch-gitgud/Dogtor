@@ -2,20 +2,22 @@ import Header from "../../components/Header";
 import React from "react";
 import { useEffect, useState } from "react";
 import './userSelect.css';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useParams } from "react-router-dom";
 
 
 let start=[];
 
 /* The following function deals with the first step in booking appointments*/
-function SelectType(){
+function AdminSelectType(){
 
+    const { pet,user } = useParams();
     const [results, setData] = useState([]);
     let [resultType, setType] = useState("Select a type ...");
     const navigate = useNavigate();
-    const now = 25;
+    const now = 75;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -44,14 +46,8 @@ function SelectType(){
         if(resultType==="Select a type ..."){
             alert('Please Select type of appointment')
         }
-        else if(resultType==="Emergency Appointment"){
-            alert('Please contact clinic for imidiate assistance at 902-XXX-XXXX')
-        }
-        else if(resultType==="Surgeries"){
-            alert('Please contact clinic in order to discuss next steps at 902-XXX-XXXX')
-        }
         else{
-          navigate(`/user-select-type/${resultType}`);
+            navigate(`/admin-schedule/${user}/pet/${pet}/type/${resultType}`);
         }
         console.log(resultType)
     }
@@ -83,4 +79,4 @@ function SelectType(){
       );
 }
 
-export default SelectType;
+export default AdminSelectType;

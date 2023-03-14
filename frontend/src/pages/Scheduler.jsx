@@ -33,7 +33,7 @@ const onFinish = (values) => {
 
 
   var newDate = tempDate.slice(1, 11);
-  console.log("Success:", values);
+  console.log(totalStartTime);
   //Can directly call props here
 
   fetch("./data-EmployeeSchedule.json")

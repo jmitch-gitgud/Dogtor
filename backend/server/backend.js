@@ -216,7 +216,7 @@ function selectValueFromType(appointment_type_value, res){
     port: 5432,
   });
 
-  const text = 'SELECT * FROM appointment_type.pets WHERE "appointment_type_value"=$1'
+  const text = 'SELECT appointment_type_value,appointment_type_id FROM public.appointment_type WHERE "appointment_type_catagory"=$1'
   const values = [appointment_type_value]
 
   client.connect(err => {
@@ -236,4 +236,184 @@ function selectValueFromType(appointment_type_value, res){
   })
 }
 
-module.exports = { login, schedule, viewUsers, viewUserPet,viewPet, selectType, selectValueFromType};
+function selectPerformer(id_value, res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+  const text =  'SELECT public.staff.staff_id, public.staff.staff_username, public.custom_skills.appointment_type_id FROM public.staff INNER JOIN public.custom_skills ON public.staff.staff_id=public.custom_skills.staff_id WHERE custom_skills.appointment_type_id=$1'
+  const values = [id_value]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "retrieved", data: pgres.rows}));
+        }});
+      }
+  })
+}
+
+function findStaffTimes(id_value,res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+  const text =  'SELECT * FROM appointment where "staff_id" = $1'
+  const values = [id_value]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "retrieved", data: pgres.rows}));
+        }});
+      }
+  })
+
+}
+
+function findUserTimes(id_value,res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+  const text =  'SELECT * FROM appointment where "assigned_client_id" = $1'
+  const values = [id_value]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "retrieved", data: pgres.rows}));
+        }});
+      }
+  })
+  
+}
+
+function findTimes(id_value,res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+    
+  const text =  'SELECT appointment_type_duration FROM appointment_type  where "appointment_type_id" = $1'
+  const values = [id_value]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "retrieved", data: pgres.rows}));
+        }});
+      }
+  })
+
+  
+}
+
+function adminBook(start_appointment_date,end_appointment_date,appointment_type_id,assigned_client_id,assigned_pets_id,staff_id,resource_id,notes,res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+  const text = 'INSERT INTO public.appointment(start_appointment_date, end_appointment_date, appointment_type_id, assigned_client_id, assigned_pets_id, staff_id, resource_id, notes ) VALUES($1, $2, $3, $4, $5, $6, $7, $8)'
+  const values = [start_appointment_date,end_appointment_date,appointment_type_id,assigned_client_id,assigned_pets_id,staff_id,resource_id,notes]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "retrieved", data: pgres.rows}));
+        }});
+      }
+  })
+}
+
+function deleteTime(id_value,res){
+  const client = new Client({
+    host: '127.0.0.1',
+    user: 'postgres',
+    database: 'postgres',
+    password: dbPass,
+    port: 5432,
+  });
+
+  const text =  'DELETE FROM appointment where "appointment_id" = $1'
+  const values = [id_value]
+
+  client.connect(err => {
+    if (err) {
+      console.error('connection error', err.stack)
+    } else {
+      client.query(text, values, (err, pgres) => {
+        if (err) {
+          console.log(err.stack)
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "ERROR"}));
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({status: "removed", data: pgres.rows}));
+        }});
+      }
+  })
+
+}
+
+module.exports = { login, schedule, viewUsers, viewUserPet,viewPet, selectType, selectValueFromType,selectPerformer,findStaffTimes,findUserTimes,findTimes,adminBook,deleteTime};
