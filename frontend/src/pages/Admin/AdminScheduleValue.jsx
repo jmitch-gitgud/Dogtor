@@ -2,7 +2,7 @@ import Header from "../../components/Header";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import './userSelect.css';
+import './AdminSelect.css';
 import {useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,7 +17,7 @@ function AdminSelectValue(){
     const [results, setData] = useState([]);
     let [resultType, setType] = useState("Select a value ...");
     const navigate = useNavigate();
-    const now = 80;
+    const now = 64;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -59,11 +59,11 @@ function AdminSelectValue(){
         <div>
         <Header />
         <br></br>
-        <p>Book Appointment: Select classsification of appointment</p>
+        <p>Book Appointment: Select value of appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
         </div>
-          <div className="centered">
+          <div className="box3">
           <select onChange={handleChangingOfType}>
             <option value="Select a type ..."> -- Select a value -- </option>
             {}
