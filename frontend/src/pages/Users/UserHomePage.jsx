@@ -3,7 +3,6 @@ import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import React from "react";
 
-import {Routes, Route, useNavigate} from 'react-router-dom';
 import { useParams } from "react-router-dom";
 
 function UserHome() {
