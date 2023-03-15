@@ -1,4 +1,3 @@
-import Header from "../../components/Header";
 import React from "react";
 import { useEffect, useState } from "react";
 import './AdminSelect.css';
@@ -6,6 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AdminNavBar from "../../components/AdminNavBar";
 
 
 let start=[];
@@ -59,7 +59,7 @@ function AdminSelectPerformer(){
     
       return (
         <div>
-        <Header />
+        <AdminNavBar />
         <br></br>
         <p>Book Appointment: Select who will perform appointment</p>
         <div>

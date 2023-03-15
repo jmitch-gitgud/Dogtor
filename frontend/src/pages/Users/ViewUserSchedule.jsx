@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './userSelect.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ClientNavBar from "../../components/ClientNavBar";
 
 
 import moment from "moment";
@@ -10,8 +11,6 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import 'antd/dist/antd.min.js';
 import { Spin, Divider, Button, Form} from "antd";
-import Header from "../../components/Header";
-
 
 function ViewSpecUserSchedule(){
 
@@ -89,7 +88,7 @@ function ViewSpecUserSchedule(){
     return (
       <>
       <div>
-      <Header />    
+      <ClientNavBar />    
         <Divider />
         
 

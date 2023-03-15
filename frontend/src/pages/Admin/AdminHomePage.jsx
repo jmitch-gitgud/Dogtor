@@ -1,4 +1,4 @@
-import Header from "../../components/Header";
+import AdminNavBar from "../../components/AdminNavBar";
 
 import { Link } from "react-router-dom";
 import React from "react";
@@ -7,7 +7,7 @@ import './AdminSelect.css';
 function AdminHome() {
   return (
     <div>
-      <Header />
+      <AdminNavBar />
       <div className="login-header padding-top-128">
         <div className="box1">
         <h1 className="padding-bottom-16">The Dogtor will see you now </h1>

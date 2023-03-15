@@ -1,4 +1,3 @@
-import Header from "../../components/Header";
 import React from "react";
 import { useEffect, useState } from "react";
 import './AdminSelect.css';
@@ -6,6 +5,8 @@ import { useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from "react-router-dom";
+import AdminNavBar from "../../components/AdminNavBar";
+
 
 
 let start=[];
@@ -56,7 +57,7 @@ function SelectPet(){
     
       return (
         <div>
-        <Header />
+        <AdminNavBar />
         <br></br>
         <p>Book Appointment: Select pet for appointment</p>
         <div>

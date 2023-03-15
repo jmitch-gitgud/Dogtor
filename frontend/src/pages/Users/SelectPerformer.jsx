@@ -1,4 +1,3 @@
-import Header from "../../components/Header";
 import React from "react";
 import { useEffect, useState } from "react";
 import './userSelect.css';
@@ -7,6 +6,8 @@ import { useParams } from "react-router-dom";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Divider } from "antd";
+import ClientNavBar from "../../components/ClientNavBar";
+
 
 
 let start=[];
@@ -68,7 +69,7 @@ function SelectPerformer(){
     
       return (
         <div>
-        <Header />
+        <ClientNavBar />
         <br></br>
         <p>Book Appointment: Select who will perform appointment</p>
         <div>

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './userSelect.css';
-//import {Routes, Route, useNavigate} from 'react-router-dom';
-//import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ClientNavBar from "../../components/ClientNavBar";
 
 
 import moment from "moment";
@@ -12,7 +11,6 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import 'antd/dist/antd.min.js';
 import { Spin, Divider, Button, Form} from "antd";
-import Header from "../../components/Header";
 import {DatePicker} from "antd";
 import { useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
@@ -252,7 +250,7 @@ if(duration[0]!== undefined){
     return (
       <>
       <div>
-      <Header />            
+      <ClientNavBar />            
         <Divider />
         <ProgressBar now={now} label={`${now}%`} />
         <Divider />

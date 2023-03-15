@@ -7,13 +7,11 @@ function AdminNavBar() {
     <header>
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand  href="/welcome">Dogtor</Navbar.Brand>
+        <Navbar.Brand  href="/admin">Dogtor</Navbar.Brand>
         <Navbar.Collapse  id="basic-navbar-nav">
           <Nav>
-            <Nav.Link className="navbar-item" href="/admin/pet-profiles">Pet Profiles</Nav.Link>
-            <Nav.Link className="navbar-item" href="/register">Register</Nav.Link>
-            <Nav.Link className="navbar-item" href="/admin-schedule">Schedule</Nav.Link>
-            <Nav.Link className="navbar-item" href="/admin-settings">Settings</Nav.Link>
+            <Nav.Link className="navbar-item" href="/admin-schedule">Schedule Appointment</Nav.Link>
+            <Nav.Link className="navbar-item" href="/admin-view-users">View Users/Pets/Appointmnets</Nav.Link>
             <Nav.Link className="navbar-item" href="/">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>

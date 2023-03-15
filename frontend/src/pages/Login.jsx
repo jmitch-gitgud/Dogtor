@@ -66,13 +66,13 @@ function Login() {
         nextPage = data.page;
 
         if(nextPage === '/admin-welcome'){
-          navigate(`/admin-welcome`)
+          navigate(`/admin`);
         }
         if(nextPage === '/client-welcome'){
-          navigate(`/client-welcome`)
+          navigate(`/user/${data.id}`);
         }
         if(nextPage === '/staff-welcome'){
-          navigate(`/staff-welcome`)
+          navigate(`/staff-welcome`);
         }
 
       } else if (status === "Invalid credentials") {
