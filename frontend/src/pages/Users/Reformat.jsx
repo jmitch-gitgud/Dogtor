@@ -11,30 +11,28 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import 'antd/dist/antd.min.js';
-import { Spin, Tag, Divider, Button, Form} from "antd";
+import { Spin, Divider, Button, Form} from "antd";
 import Header from "../../components/Header";
-//import Footer from "../components/Footer";
 import {DatePicker} from "antd";
+import { useNavigate} from 'react-router-dom';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 
 function Reformat(){
 
+    const navigate = useNavigate();
     const [results, setData] = useState([]);
     const [additionInfo, setInfo] = useState('');
-    const { id,staffId } = useParams();
+    const { id,staffId,userId } = useParams();
 
     const [schedule,setSchedule]= useState([]);
     const [loading, setLoading]=useState(true);
-    const [selectedTag, setNextTags]=useState([]);
-    const [resourceMap, setRessource]=useState([
-          { resourceId: "Booking", resourceTitle: "Booking" },
-        ],);
     const localizer = momentLocalizer(moment);
-    const { CheckableTag } = Tag;
     const { RangePicker } = DatePicker;
 
-    const employeeTagsData = ["Booking"];
     let durTime=0;
+    const now = 80;
+
 
    
 
@@ -65,7 +63,7 @@ function Reformat(){
 
 
 
-    const clientId  = "f827d38b-764a-4018-b6aa-1f2688bd84d0";
+    const clientId  = userId
     const [petResults, setpets] = useState([]);
     let [resultType, setPet] = useState("Select a pet ...");
 
@@ -130,7 +128,7 @@ if(duration[0]!== undefined){
       };
     };
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
 
       let startTimes = values.dates[0].$d
       let dt1 = moment(startTimes)
@@ -206,8 +204,8 @@ if(duration[0]!== undefined){
             startTimes = moment(values.dates[0].$d);
             endTimes =  moment(values.dates[1].$d);
   
-            let data = {start_appointment_date: startTimes.format('DD-MM-YYYY HH:mm'), 
-                        end_appointment_date: endTimes.format('DD-MM-YYYY HH:mm'),
+            let data = {start_appointment_date: startTimes.format('YYYY-MM-DD HH:mm:ss'), 
+                        end_appointment_date: endTimes.format('YYYY-MM-DD HH:mm:ss'),
                         appointment_type_id: id,
                         staff_id: staffId,
                         assigned_client_id: clientId,
@@ -215,6 +213,23 @@ if(duration[0]!== undefined){
                         assigned_pets_id: resultType,
                         notes: additionInfo};
             console.log(data)
+
+            const response = await fetch('/adminBook', {
+              method: 'POST',
+              body: JSON.stringify(data),
+              headers: {
+              'Content-Type': 'application/json'
+              }     
+            })
+            const json = (await response.json()).data;
+            if(json === undefined){
+              console.log("Error")
+            }
+            else{
+              console.log("Input")
+              navigate(`/view-user-schedule/${clientId}`);
+            }
+            
           }
   
           else{
@@ -237,11 +252,10 @@ if(duration[0]!== undefined){
     return (
       <>
       <div>
-      <Header />
-            
+      <Header />            
         <Divider />
-        
-
+        <ProgressBar now={now} label={`${now}%`} />
+        <Divider />
         
         <Spin spinning={loading} tip="Loading...">
         <div className="flex-container" >
@@ -304,7 +318,6 @@ if(duration[0]!== undefined){
             localizer={localizer}
             style={{ height: "50%", width: "50%"}}
             eventPropGetter={eventPropGetter}
-            resources={resourceMap}
             resourceIdAccessor="resourceId"
             resourceTitleAccessor="resourceTitle"
           />

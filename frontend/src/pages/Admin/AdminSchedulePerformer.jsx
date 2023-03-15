@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import React from "react";
 import { useEffect, useState } from "react";
-import './userSelect.css';
+import './AdminSelect.css';
 import {useNavigate} from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import ProgressBar from 'react-bootstrap/ProgressBar';
@@ -15,9 +15,9 @@ function AdminSelectPerformer(){
 
     const {pet,type,user,value} = useParams();
     const [results, setData] = useState([]);
-    let [resultType, setType] = useState("Select a type ...");
+    let [resultType, setType] = useState("Select a performer ...");
     const navigate = useNavigate();
-    const now = 75;
+    const now = 80;
 
     
     let handleChangingOfType = (event) => {
@@ -45,7 +45,7 @@ function AdminSelectPerformer(){
 
     const handleSubmit = (event) => {
 
-        if(resultType==="Select a type ..."){
+        if(resultType==="Select a performer ..."){
             alert('Please Select type of appointment')
         }
         else{
@@ -61,13 +61,14 @@ function AdminSelectPerformer(){
         <div>
         <Header />
         <br></br>
-        <p>Book Appointment: Select type of appointment</p>
+        <p>Book Appointment: Select who will perform appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
+        <p> * If a vet is not seen it is due to the fact that currently are not qualified to perform task </p>
         </div>
-          <div className="centered">
+          <div className="box3">
           <select onChange={handleChangingOfType}>
-            <option value="Select a type ..."> -- Select a type -- </option>
+            <option value="Select a performer ..."> -- Select a performer -- </option>
             {}
             {results.map((resultType,key) => (
               <option key={key} value={resultType.staff_id}>{resultType.staff_username}</option>

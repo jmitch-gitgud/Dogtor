@@ -2,15 +2,14 @@ import Header from "../../components/Header";
 
 import { Link } from "react-router-dom";
 import React from "react";
-
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import './AdminSelect.css';
 
 function AdminHome() {
   return (
     <div>
       <Header />
       <div className="login-header padding-top-128">
-        <div className="centered2">
+        <div className="box1">
         <h1 className="padding-bottom-16">The Dogtor will see you now </h1>
         <p className="padding-bottom-32">Let's get started</p> 
         <Link to={`/admin-schedule`}>

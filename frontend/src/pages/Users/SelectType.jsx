@@ -5,17 +5,19 @@ import './userSelect.css';
 import {useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useParams } from "react-router-dom";
+import { Divider } from "antd";
 
 
 let start=[];
 
 /* The following function deals with the first step in booking appointments*/
 function SelectType(){
-
+    const { userId} = useParams();
     const [results, setData] = useState([]);
     let [resultType, setType] = useState("Select a type ...");
     const navigate = useNavigate();
-    const now = 25;
+    const now = 20;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -51,7 +53,7 @@ function SelectType(){
             alert('Please contact clinic in order to discuss next steps at 902-XXX-XXXX')
         }
         else{
-          navigate(`/user-select-type/${resultType}`);
+          navigate(`/user-select-type/${userId}/type/${resultType}`);
         }
         console.log(resultType)
     }
@@ -65,6 +67,8 @@ function SelectType(){
         <p>Book Appointment: Select classsification of appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
+        <Divider/>
+        <p> * Surgeries and Emergency cannot be booked here, contact clinic for more information </p>
         </div>
           <div className="centered">
           <select onChange={handleChangingOfType}>

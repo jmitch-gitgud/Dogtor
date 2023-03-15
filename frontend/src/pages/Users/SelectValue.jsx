@@ -6,6 +6,7 @@ import './userSelect.css';
 import {useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Divider } from "antd";
 
 
 let start=[];
@@ -13,11 +14,11 @@ let start=[];
 /* The following function deals with the first step in booking appointments*/
 function SelectValue(){
 
-    const { type } = useParams();
+    const { type,userId } = useParams();
     const [results, setData] = useState([]);
     let [resultType, setType] = useState("Select a value ...");
     const navigate = useNavigate();
-    const now = 50;
+    const now = 40;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -47,7 +48,7 @@ function SelectValue(){
             alert('Please Select value of appointment')
         }
         else{
-          navigate(`/user-select-type/${type}/type-id/${resultType}`);
+          navigate(`/user-select-type/${userId}/type/${type}/type-id/${resultType}`);
         }
     }
   
@@ -59,11 +60,13 @@ function SelectValue(){
         <div>
         <Header />
         <br></br>
-        <p>Book Appointment: Select classsification of appointment</p>
+        <p>Book Appointment: Select value of appointment</p>
         <div>
         <ProgressBar now={now} label={`${now}%`} />
+        <Divider/>
+        <br></br>
         </div>
-          <div className="centered">
+          <div className="centered2">
           <select onChange={handleChangingOfType}>
             <option value="Select a type ..."> -- Select a value -- </option>
             {}
