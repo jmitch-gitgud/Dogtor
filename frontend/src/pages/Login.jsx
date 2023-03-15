@@ -105,7 +105,7 @@ function Login() {
         </div>
         <label className="input-label">Hi! I am... </label>
         <div>
-          <select onChange={handleChangingOfType}>
+          <select className="login-select" onChange={handleChangingOfType}>
             <option value="Select a type ..."> -- Select a value -- </option>
             {}
             {options.map((resultType,key) => (

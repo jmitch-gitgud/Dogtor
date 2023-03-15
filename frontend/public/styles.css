@@ -142,6 +142,15 @@
     border-color: rgb(43, 43, 44);
   }
 
+  .login-select {
+    width: 100%;
+    background-color: #fff;
+    outline: none;
+    font-size: 1.5rem;  
+    border-color: #545454;
+    border-width: thin;
+  }
+
   .home-button {
     left: 0;
   }
@@ -282,51 +291,6 @@
     text-decoration: none;
     margin: auto 1.25rem;
     font-size: 1.5rem;
-  }
-
-  /* DROPDOWN */
-  .dropdown-container {
-    text-align: left;
-    border: 1px solid #ccc;
-    position: relative;
-    border-radius: 5px;
-  }
-  
-  .dropdown-input {
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    user-select: none;
-    font-size: 1.5rem;
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    transform: translate(4px);
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: auto;
-    max-height: 150px;
-    background-color: #fff;
-    right: 4px;
-    top: 35px;
-    z-index: 1;
-  }
-  
-  .dropdown-item {
-    padding: 5px;
-    cursor: pointer;
-  }
-
-  .dropdown-item:hover {
-    background-color: #9fc3f870;
-  }
-
-  .dropdown-item.selected {
-    background-color: #0d6efd;
-    color: #fff;
   }
 
    /* ----- REGISTER PAGE  ----- */
