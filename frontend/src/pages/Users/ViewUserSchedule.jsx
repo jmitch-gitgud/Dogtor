@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import './AdminSelect.css';
+import './userSelect.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -13,7 +13,7 @@ import { Spin, Divider, Button, Form} from "antd";
 import Header from "../../components/Header";
 
 
-function ViewUserSchedule(){
+function ViewSpecUserSchedule(){
 
     const { userId } = useParams();
     const [schedule,setSchedule]= useState([]);
@@ -89,8 +89,7 @@ function ViewUserSchedule(){
     return (
       <>
       <div>
-      <Header />
-            
+      <Header />    
         <Divider />
         
 
@@ -99,8 +98,7 @@ function ViewUserSchedule(){
         <div className="flex-container" >
          <div className="schedulerform" style={{ marginTop: "30px", width: "50%", marginRight: "5%"}} display= "flex">
          <Form onFinish={onFinish} onFinishFailed={onFinishFailed} name="basic" initialValues={{remember: true}} style={{background: "#D9D9D9"}}>
-
-            <h1 className="padding-bottom-16" style={{textAlign: "center", marginBottom: "30px"}}>Add New Appointment</h1>
+            <h1 className="padding-bottom-16" style={{textAlign: "center", marginBottom: "30px"}}>Edit Existing Appointments</h1>
             <div>
             <Form.Item
             labelCol={{ span: 24 }}
@@ -148,4 +146,4 @@ function ViewUserSchedule(){
     );
 }
 
-export default ViewUserSchedule;
+export default ViewSpecUserSchedule;

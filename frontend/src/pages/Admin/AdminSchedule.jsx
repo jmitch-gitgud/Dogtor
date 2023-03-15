@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import React from "react";
 import { useEffect, useState } from "react";
-import './userSelect.css';
+import './AdminSelect.css';
 import { useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,7 +15,7 @@ function SelectUser(){
     const [results, setData] = useState([]);
     let [resultType, setType] = useState("Select a user ...");
     const navigate = useNavigate();
-    const now = 25;
+    const now = 16;
     
     let handleChangingOfType = (event) => {
         setType(event.target.value);
@@ -41,8 +41,8 @@ function SelectUser(){
     }, []);
 
     const handleSubmit = (event) => {
-        if(resultType==="Select a type ..."){
-            alert('Please Select type of appointment')
+        if(resultType==="Select a user ..."){
+            alert('Please select a user')
         }
         else{
             console.log(resultType)
@@ -60,7 +60,7 @@ function SelectUser(){
         <div>
         <ProgressBar now={now} label={`${now}%`} />
         </div>
-          <div className="centered">
+          <div className="box2">
           <select onChange={handleChangingOfType}>
             <option value="Select a user ..."> -- Select a user -- </option>
             {}

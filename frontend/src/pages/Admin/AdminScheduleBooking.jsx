@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import './userSelect.css';
+import './AdminSelect.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -13,10 +13,13 @@ import { Spin, Divider, Button, Form} from "antd";
 import Header from "../../components/Header";
 import {DatePicker} from "antd";
 import { useNavigate} from 'react-router-dom';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+
 
 
 function AdminReformat(){
 
+    const now = 96;
     const navigate = useNavigate();
     const [results, setData] = useState([]);
     const [additionInfo, setInfo] = useState('');
@@ -53,7 +56,6 @@ function AdminReformat(){
 
 
 
-    const clientId  = "f827d38b-764a-4018-b6aa-1f2688bd84d0";
 
 
     const eventPropGetter = (event) => {
@@ -156,7 +158,8 @@ function AdminReformat(){
       <>
       <div>
       <Header />
-            
+        <Divider />
+        <ProgressBar now={now} label={`${now}%`} /> 
         <Divider />
         
 

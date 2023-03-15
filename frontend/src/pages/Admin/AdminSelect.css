@@ -1,21 +1,32 @@
-.centered {
+.box1 {
   border: 3px solid #9DB9D2;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 50px;
   margin-bottom: 300px;
   width: 8em;
-  width: 25%;
+  width: 80%;
   padding: 10px;
 }
 
-.centered2 {
+.box2 {
   border: 3px solid #9DB9D2;
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
   margin-bottom: 300px;
   width: 8em;
-  width: 25%;
+  width: 16%;
+  padding: 10px;
+}
+
+.box3 {
+  border: 3px solid #9DB9D2;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-bottom: 300px;
+  width: 8em;
+  width: 20%;
   padding: 10px;
 }
