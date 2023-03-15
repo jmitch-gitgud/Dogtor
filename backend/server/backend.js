@@ -4,7 +4,7 @@ const dbPass = 'postgres';
 
 function schedule(details, date, vet, tech, pet, cust, compla, res) {
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
@@ -33,7 +33,7 @@ function schedule(details, date, vet, tech, pet, cust, compla, res) {
 
 function login(u, p, r, res) {
     const client = new Client({
-        host: 'postgres',
+        host: '127.0.0.1',
         user: 'postgres',
         database: 'postgres',
         password: dbPass,
@@ -92,7 +92,7 @@ function login(u, p, r, res) {
 /* Retrieves all the users from the system */
 function viewUsers(req,res){
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
@@ -120,7 +120,7 @@ function viewUsers(req,res){
 /*Retrieves all the pets of a specifc pet */
 function viewUserPet(userId,res){
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
@@ -150,7 +150,7 @@ function viewUserPet(userId,res){
 /* Will retrieve all information on a specifc pet*/
 function viewPet(petId,res){
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
@@ -181,7 +181,7 @@ function viewPet(petId,res){
 /*Function will retrieve all the types in the system that currently exist */
 function selectType(req,res){
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
@@ -209,7 +209,7 @@ function selectType(req,res){
 
 function selectValueFromType(appointment_type_value, res){
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
@@ -238,7 +238,7 @@ function selectValueFromType(appointment_type_value, res){
 
 function selectPerformer(id_value, res){
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
@@ -267,7 +267,7 @@ function selectPerformer(id_value, res){
 
 function findStaffTimes(id_value,res){
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
@@ -297,7 +297,7 @@ function findStaffTimes(id_value,res){
 
 function findUserTimes(id_value,res){
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
@@ -327,7 +327,7 @@ function findUserTimes(id_value,res){
 
 function findTimes(id_value,res){
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
@@ -359,7 +359,7 @@ function findTimes(id_value,res){
 
 function adminBook(start_appointment_date,end_appointment_date,appointment_type_id,assigned_client_id,assigned_pets_id,staff_id,resource_id,notes,res){
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
@@ -388,7 +388,7 @@ function adminBook(start_appointment_date,end_appointment_date,appointment_type_
 
 function deleteTime(id_value,res){
   const client = new Client({
-    host: 'postgres',
+    host: '127.0.0.1',
     user: 'postgres',
     database: 'postgres',
     password: dbPass,
