@@ -7,10 +7,3 @@ vet clinics. This is a prototype.
 2) cd into to frontend folder and run the command "npm start"
 Make sure that your database is running and is setup properly.
 Run the setup_postgres.js file to setup the database with test values
-
-## Sprint History
-Sprint 1:
-
-Sprint 2:
-
-Sprint 3:
