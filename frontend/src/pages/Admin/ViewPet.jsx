@@ -36,6 +36,8 @@ function ViewPet(){
         <div>
         <AdminNavBar />
         <div className="login-header padding-top-128">
+        <div className="petform">
+        <h1 className="padding-bottom-16"><b>View The User's Pet Information</b></h1>
           <div className="UserTable">
               {results.map((pet) => {
                 return(
@@ -52,6 +54,7 @@ function ViewPet(){
                   </div>
                 );
               })}
+          </div>
           </div>
         </div>
       </div>
