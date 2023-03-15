@@ -1,4 +1,4 @@
-import Header from "../../components/Header";
+import ClientNavBar from "../../components/ClientNavBar";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -58,7 +58,7 @@ function SelectValue(){
     
       return (
         <div>
-        <Header />
+        <ClientNavBar />
         <br></br>
         <p>Book Appointment: Select value of appointment</p>
         <div>

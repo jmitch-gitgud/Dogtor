@@ -10,10 +10,11 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import 'antd/dist/antd.min.js';
 import { Spin, Divider, Button, Form} from "antd";
-import Header from "../../components/Header";
 import {DatePicker} from "antd";
 import { useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import AdminNavBar from "../../components/AdminNavBar";
+
 
 
 
@@ -157,7 +158,7 @@ function AdminReformat(){
     return (
       <>
       <div>
-      <Header />
+      <AdminNavBar />
         <Divider />
         <ProgressBar now={now} label={`${now}%`} /> 
         <Divider />
