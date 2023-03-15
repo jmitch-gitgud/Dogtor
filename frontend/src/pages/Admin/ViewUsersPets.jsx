@@ -39,6 +39,8 @@ function ViewUsersPets() {
       <div>
       <AdminNavBar />
       <div className="login-header padding-top-128">
+      <div className="petform">
+      <h1 className="padding-bottom-16"><b>View The User's Pets</b></h1>
         <div className="UserTable">
         <table>
           <tbody>
@@ -60,6 +62,7 @@ function ViewUsersPets() {
           })}
           </tbody>
         </table>
+      </div>
       </div>
       </div>
     </div>
