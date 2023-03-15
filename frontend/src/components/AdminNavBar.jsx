@@ -10,7 +10,7 @@ function AdminNavBar() {
         <Navbar.Brand  href="/admin">Dogtor</Navbar.Brand>
         <Navbar.Collapse  id="basic-navbar-nav">
           <Nav>
-            <Nav.Link className="navbar-item" href="/admin-schedule">Schedule Appointments</Nav.Link>
+            <Nav.Link className="navbar-item" href="/admin-schedule">Schedule Appointment</Nav.Link>
             <Nav.Link className="navbar-item" href="/admin-view-users">View Users/Pets/Appointmnets</Nav.Link>
             <Nav.Link className="navbar-item" href="/">Logout</Nav.Link>
           </Nav>
