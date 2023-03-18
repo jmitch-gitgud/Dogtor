@@ -7,13 +7,13 @@
   }
     
   table {
-    border: 2px solid forestgreen;
+    border: 2px solid #D9D9D9;;
     width: 800px;
     height: 200px;
   }
     
   th {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #D9D9D9;;
   }
     
   td {
