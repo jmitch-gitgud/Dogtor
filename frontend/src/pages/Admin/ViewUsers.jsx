@@ -37,10 +37,10 @@ function ViewUsers() {
     <div>
       <AdminNavBar />
       <div className="login-header padding-top-128">
-      <div className="petform">
-      <h1 className="padding-bottom-16"><b>View All Users</b></h1>
+      <div className="pet-info-box">
+      <h1 className="padding-bottom-16"><b>View All Clients</b></h1>
         <div className="UserTable">
-        <table>
+        <table style={{marginBottom: "800px" }}>
           <tbody>
           <tr>
             <th>Name</th>

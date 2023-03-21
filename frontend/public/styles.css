@@ -363,19 +363,23 @@
 
   /* ----- REGISTER PET PAGE  ----- */
 
-  .petform {
-    position: relative;
-    width: 50%;
-    height: 25%;
-    margin: auto;
-    background: #D9D9D9;
-    padding: 2rem 2rem 1rem 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 5px rgb(138, 137, 137);
+  
+  .pet-info-box h1 {
+    font-size: 4rem;
+    padding-top: 10%;
   }
 
-  .petform-header {
-    text-align: center;
-    font-family: 'Heebo';
-    font-size: 2rem;
+  .pet-info-box  {
+
+    width: 40rem;
+    height: 40rem;
+    background-color: #D9D9D9;
+    border: 2px solid rgb(43, 43, 44);
+    padding: 10px;
+    position: relative;
+    margin: auto;
+    box-sizing: border-box;
+    border-color: rgb(43, 43, 44);
+    
   }
+  
