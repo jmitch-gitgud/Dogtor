@@ -16,6 +16,8 @@ import { useNavigate} from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
 
+/*The following function will ask user's to input information regarding 
+the appointment they wish to book */
 function Reformat(){
 
     const navigate = useNavigate();

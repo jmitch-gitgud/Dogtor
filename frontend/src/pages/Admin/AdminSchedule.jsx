@@ -9,7 +9,7 @@ import AdminNavBar from "../../components/AdminNavBar";
 
 let start=[];
 
-/* The following function deals with the first step in booking appointments*/
+/* The following function deals with selecting a user to book for the appointment*/
 function SelectUser(){
 
     const [results, setData] = useState([]);
