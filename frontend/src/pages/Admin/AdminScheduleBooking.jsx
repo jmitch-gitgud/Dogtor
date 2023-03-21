@@ -17,7 +17,7 @@ import AdminNavBar from "../../components/AdminNavBar";
 
 
 
-
+/*This function deals with taking the times for the new appointment and checks to make sure no conflict will occur */
 function AdminReformat(){
 
     const now = 96;

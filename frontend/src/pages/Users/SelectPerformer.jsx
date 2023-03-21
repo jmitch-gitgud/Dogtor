@@ -12,7 +12,8 @@ import ClientNavBar from "../../components/ClientNavBar";
 
 let start=[];
 
-/* The following function deals with the first step in booking appointments*/
+/* The following function deals with the thrid step in booking appointments, user's are asked to select a 
+staff member who is qualified for the appointment select*/
 function SelectPerformer(){
 
     const {id,userId} = useParams();

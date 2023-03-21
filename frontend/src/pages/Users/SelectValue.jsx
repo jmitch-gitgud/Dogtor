@@ -11,7 +11,8 @@ import { Divider } from "antd";
 
 let start=[];
 
-/* The following function deals with the first step in booking appointments*/
+/* The following function deals with the second step in booking appointments. User are promted to select value
+based of what appointment they have picked*/
 function SelectValue(){
 
     const { type,userId } = useParams();

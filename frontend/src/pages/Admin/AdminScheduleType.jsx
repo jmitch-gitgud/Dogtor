@@ -10,7 +10,7 @@ import AdminNavBar from "../../components/AdminNavBar";
 
 let start=[];
 
-/* The following function deals with the first step in booking appointments*/
+/* The following function deals with selecting a type of appointment*/
 function AdminSelectType(){
 
     const { pet,user } = useParams();

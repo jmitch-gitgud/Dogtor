@@ -12,6 +12,8 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import 'antd/dist/antd.min.js';
 import { Spin, Divider, Button, Form} from "antd";
 
+/* The following function prints the current users schedule. It will 
+search the appointements for all relating to user which is currently logged in*/
 function ViewSpecUserSchedule(){
 
     const { userId } = useParams();

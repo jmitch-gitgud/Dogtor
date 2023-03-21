@@ -10,7 +10,7 @@ import AdminNavBar from "../../components/AdminNavBar";
 
 let start=[];
 
-/* The following function deals with the first step in booking appointments*/
+/* The following function deals with selecting the staff member for the appointment based on information submitted*/
 function AdminSelectPerformer(){
 
     const {pet,type,user,value} = useParams();

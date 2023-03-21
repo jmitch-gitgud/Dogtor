@@ -13,7 +13,7 @@ import { Spin, Divider, Button, Form} from "antd";
 import AdminNavBar from "../../components/AdminNavBar";
 
 
-
+/*Based on the user select the system will print the schedule*/
 function ViewUserSchedule(){
 
     const { userId } = useParams();
