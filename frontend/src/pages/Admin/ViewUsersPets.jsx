@@ -42,7 +42,7 @@ function ViewUsersPets() {
       <div className="pet-info-box">
       <h1 className="padding-bottom-16"><b>View The Client's Pets</b></h1>
         <div className="UserTable">
-        <table style={{marginBottom: "800px" }}>
+        <table style={{marginBottom: "750px" }}>
           <tbody>
           <tr>
             <th>Id</th>

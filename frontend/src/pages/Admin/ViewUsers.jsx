@@ -40,7 +40,7 @@ function ViewUsers() {
       <div className="pet-info-box">
       <h1 className="padding-bottom-16"><b>View All Clients</b></h1>
         <div className="UserTable">
-        <table style={{marginBottom: "800px" }}>
+        <table style={{marginBottom: "750px" }}>
           <tbody>
           <tr>
             <th>Name</th>
