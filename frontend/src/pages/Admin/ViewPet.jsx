@@ -38,7 +38,7 @@ function ViewPet(){
         <div className="login-header padding-top-128">
         <div className="pet-info-box">
         <h1 className="padding-bottom-16"><b>View The Client's Pet Information</b></h1>
-          <div className="UserTable" style={{marginBottom: "800px" }}>
+          <div className="UserTable" style={{marginBottom: "750px" }}>
               {results.map((pet) => {
                 return(
                   <div key={pet.pet_id}>
