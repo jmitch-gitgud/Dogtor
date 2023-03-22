@@ -100,4 +100,46 @@ INSERT INTO appointment_type(appointment_type_catagory,appointment_type_value,ap
 
 INSERT INTO admins(admin_name,admin_password) VALUES ('AndreAucoin',crypt('password', gen_salt('md5')));
 INSERT INTO clients(client_username, client_password) VALUES ('JohnDuck',crypt('password', gen_salt('md5')));
-INSERT INTO staff(staff_username, staff_password,catagory) VALUES ('Donald Duck',crypt('password', gen_salt('md5')),1);
+INSERT INTO staff(staff_username, staff_password,catagory) VALUES ('Dr Donald Duck',crypt('password', gen_salt('md5')),1);
+INSERT INTO staff(staff_username, staff_password,catagory) VALUES ('Dr Goofy McGee',crypt('password', gen_salt('md5')),1);
+INSERT INTO staff(staff_username, staff_password,catagory) VALUES ('Dr Micky Mouse',crypt('password', gen_salt('md5')),1);
+
+
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Donald Duck' and appointment_type_value = 'Ear Infections') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Donald Duck' and appointment_type_value = 'Annual Appointment') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Donald Duck' and appointment_type_value = 'Pet is under some form of distress') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Donald Duck' and appointment_type_value = 'Extreme situation where care is needed immediatly') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Donald Duck' and appointment_type_value = 'Spay(cat)') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Donald Duck' and appointment_type_value = 'Exotic Surgery') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Goofy McGee' and appointment_type_value = 'Neuter(cat)') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Goofy McGee' and appointment_type_value = 'Spay(dog)') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Goofy McGee' and appointment_type_value = 'Dental') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Goofy McGee' and appointment_type_value = 'Ortho') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Goofy McGee' and appointment_type_value = 'Exotic Animal appointment') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Goofy McGee' and appointment_type_value = 'Technician performs task') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Micky Mouse' and appointment_type_value = 'Consultations') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Micky Mouse' and appointment_type_value = 'Vaccines') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Micky Mouse' and appointment_type_value = 'Checkups') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Micky Mouse' and appointment_type_value = 'Neuter(dog)') as who;
+INSERT INTO custom_skills(staff_id,appointment_type_id) SELECT staff, appointment_type from (SELECT w.appointment_type_id  AS appointment_type, m.staff_id  AS staff FROM appointment_type w , staff m where staff_username = 'Dr Micky Mouse' and appointment_type_value = 'Exotic Surgery') as who;
+
+INSERT INTO pets(pet_name,owner_id) SELECT 'Bluey',client_id from clients where client_username='JohnDuck' 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
