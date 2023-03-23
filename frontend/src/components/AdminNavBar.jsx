@@ -1,11 +1,13 @@
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useParams } from "react-router-dom";
 
 function AdminNavBar() {
+  const { userId} = useParams();
   return (
     <header>
     <Navbar expand="lg">
-        <Navbar.Brand className="navbar-brand" href="/admin">Dogtor</Navbar.Brand>
+        <Navbar.Brand className="navbar-brand" href={`/admin/${userId}`}>Dogtor</Navbar.Brand>
         <Navbar.Collapse className="navbar-collapse" id="basic-navbar-nav">
           <Nav className="navbar-items-admin">
             <Nav.Link className="navbar-item" href="/admin-schedule">Schedule Appointment</Nav.Link>
