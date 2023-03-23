@@ -14,7 +14,7 @@ function Login() {
   const navigate = useNavigate();
 
   const errors = {
-    "Invalid": "Invalid Username or Password",
+    "Invalid": "Invalid Username, Password or Role",
     "Error": "ERROR: looks like something went wrong..."
   };
   
@@ -66,13 +66,13 @@ function Login() {
         nextPage = data.page;
 
         if(nextPage === '/admin-welcome'){
-          navigate(`/admin`);
+          navigate(`/admin/${data.id}`);
         }
         if(nextPage === '/client-welcome'){
-          navigate(`/user/${data.id}`);
+          navigate(`/client/${data.id}`);
         }
         if(nextPage === '/staff-welcome'){
-          navigate(`/staff-welcome`);
+          navigate(`/staff/${data.id}`);
         }
 
       } else if (status === "Invalid credentials") {

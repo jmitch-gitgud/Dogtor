@@ -45,6 +45,14 @@ app.route('/check').post((req, res) => {
   backend.login(username, password, role, res);
 });
 
+app.route('/register-user-step-1').post((req, res) => {
+  firstName = req.body.FirstName;
+  lastName = req.body.LastName;
+  email = req.body.Email;
+  role = req.body.Role;
+  backend.registerUserFirstStep(firstName, lastName, email, role, res);
+});
+
 app.route('/appointment').post((req, res) => {
   appointmentD = req.body.details;
   appointmentDate = req.body.date;

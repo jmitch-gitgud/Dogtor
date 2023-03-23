@@ -9,10 +9,9 @@ function AdminRegister() {
         <AdminNavBar />
         <div className="padding-top-128">
   
-          <div className="gray-box">
-
+          <div className="register-gray-box">
           <nav>
-            <Link to="/register-user">
+            <Link to="/register-user-1">
               <button className="register-button register-user-button" type="button">
                 Register User
               </button>
