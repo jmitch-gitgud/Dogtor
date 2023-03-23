@@ -11,8 +11,11 @@ import registerServiceWorker from './components/registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import AdminRegister from "./pages/Admin/AdminRegister";
-import RegisterUser from "./pages/Admin/RegisterUser";
+import RegisterUserPage1 from "./pages/Admin/RegisterUserPage1";
+import RegisterUserPage2Client from "./pages/Admin/RegisterUserPage2Client";
+import RegisterUserPage2Staff from "./pages/Admin/RegisterUserPage2Staff";
 import RegisterPet from "./pages/Admin/RegisterPet";
+
 import AdminPetProfiles from "./pages/Admin/AdminPetProfiles";
 import AdminSchedule from "./pages/Admin/AdminSchedule";
 import AdminSettings from "./pages/Admin/AdminSettings";
@@ -30,8 +33,6 @@ import AdminSelectValue from "./pages/Admin/AdminScheduleValue"
 import AdminSelectPerformer from "./pages/Admin/AdminSchedulePerformer"
 import AdminReformat from "./pages/Admin/AdminScheduleBooking"
 import ViewUserSchedule from "./pages/Admin/ViewSchedule"
-import UserHome from "./pages/Users/UserHomePage"
-import AdminHome from "./pages/Admin/AdminHomePage"
 import ViewSpecUserSchedule from "./pages/Users/ViewUserSchedule"
 
 export default function App() {
@@ -42,14 +43,16 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
 
-            <Route path="admin-welcome" element={<AdminWelcome />} />
-            <Route path="client-welcome" element={<ClientWelcome />} />
-            <Route path="staff-welcome" element={<StaffWelcome />} />
+            <Route path="admin/:userId" element={<AdminWelcome />} />
+            <Route path="client/:userId" element={<ClientWelcome />} />
+            <Route path="staff/:userId" element={<StaffWelcome />} />
 
             <Route path="register" element={<AdminRegister />} />
-            <Route path="register-user" element={<RegisterUser />} />
+            <Route path="register-user-1" element={<RegisterUserPage1 />} />
+            <Route path="register-client-2" element={<RegisterUserPage2Client />} />
+            <Route path="register-staff-2" element={<RegisterUserPage2Staff />} />
             <Route path="register-pet" element={<RegisterPet />} />
-            <Route path="register-pet" element={<RegisterPet />} />
+
             <Route path="admin/pet-profiles" element={<AdminPetProfiles />} />
             <Route path="admin-schedule" element={<AdminSchedule />} />
             <Route path="admin-settings" element={<AdminSettings />} />
@@ -57,20 +60,19 @@ export default function App() {
             <Route path="admin-view-users-schedule/:userId" element={<ViewUserSchedule />} />
             <Route path="admin-view-users-pets/:id" element={<ViewUsersPets />} />
             <Route path="admin-view-users-pet/:id" element={<ViewPet />} />
+            
             <Route path="user-select-type/:userId" element={<SelectType />} />
             <Route path="user-select-type/:userId/type/:type" element={<SelectValue />} />
             <Route path="user-select-type/:userId/type/:type/type-id/:id" element={<SelectPerformer />} />
             <Route path="user-schedule/:id/staff/:staffId/user/:userId" element={<Reformat />} />
+            <Route path="view-user-schedule/:userId" element={<ViewSpecUserSchedule />} />
+
             <Route path="admin-schedule" element={<SelectUser />} />
             <Route path="admin-schedule/:user" element={<SelectPet />} />
             <Route path="admin-schedule/:user/pet/:pet" element={<AdminSelectType />} />
             <Route path="admin-schedule/:user/pet/:pet/type/:type" element={<AdminSelectValue />} />
             <Route path="admin-schedule/:user/pet/:pet/type/:type/value/:value" element={<AdminSelectPerformer />} />
-            <Route path="admin-schedule/:user/pet/:pet/type/:type/value/:value/staff/:staffid" element={<AdminReformat />} />
-            <Route path="user/:userId" element={<UserHome />} />
-            <Route path="view-user-schedule/:userId" element={<ViewSpecUserSchedule />} />
-            <Route path="admin" element={<AdminHome />} />
-                        
+            <Route path="admin-schedule/:user/pet/:pet/type/:type/value/:value/staff/:staffid" element={<AdminReformat />} />                      
           </Route>
         </Routes>
       </BrowserRouter>
