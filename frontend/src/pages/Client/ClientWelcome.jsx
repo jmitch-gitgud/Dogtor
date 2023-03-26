@@ -1,6 +1,6 @@
 import ClientNavBar from "../../components/ClientNavBar";
 import dunRoaminImg from '../images/DunRoamin.png';
-import groomingAdImg from '../images/GroomingAd.jpg'
+import groomingAdImg from '../images/GroomingAd.png'
 import dozenRosesImg from '../images/ADozenRoses.png'
 
 import React from "react";
