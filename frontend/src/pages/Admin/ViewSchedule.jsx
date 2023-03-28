@@ -101,7 +101,7 @@ function ViewUserSchedule(){
          <div className="schedulerform" style={{ marginTop: "30px", width: "50%", marginRight: "5%"}} display= "flex">
          <Form onFinish={onFinish} onFinishFailed={onFinishFailed} name="basic" initialValues={{remember: true}} style={{background: "#D9D9D9"}}>
 
-            <h1 className="padding-bottom-16" style={{textAlign: "center", marginBottom: "30px"}}>Add New Appointment</h1>
+            <h1 className="padding-bottom-16" style={{textAlign: "center", marginBottom: "30px"}}>Edit Existing Appointments</h1>
             <div>
             <Form.Item
             labelCol={{ span: 24 }}
